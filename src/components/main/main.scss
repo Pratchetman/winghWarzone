@@ -1,0 +1,30 @@
+.principalMain {
+  min-height: calc(100vh - 56px - 61px);
+  color: white;
+  >h3{
+    margin-top: 20px;
+  }
+  .flexJuegos {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    .marcoJuego {
+      width: 360px;
+      height: 550px;
+      overflow: hidden;
+      border: 3px solid white;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .marcoJuego:hover {
+      border: 3px solid greenyellow;
+      cursor: pointer;
+    }
+  }
+}

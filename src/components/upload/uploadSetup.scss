@@ -1,0 +1,24 @@
+.inputsNewArticle{
+
+    color: white;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    input{
+        width: 300px;
+    }
+}
+section{
+    margin-top: 30px;
+    color: white;
+    button{
+        margin-top: 20px;
+    }
+    .error{
+        color: green;
+    }
+}
