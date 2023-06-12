@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./uploadSetup.scss";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app } from "../../utils/fireBaseConf";
 import { getDatabase, ref as ref2, set, get, child } from "firebase/database";
@@ -15,11 +15,16 @@ const articleDefault = {
   link: "",
 };
 
-export const UploadSetup = ({ setSetup, setup }) => {
+export const UploadSetup = ({ setSetup, setup, show, setShow }) => {
   const [newArticle, setNewArticle] = useState(articleDefault);
   const [file, setFile] = useState();
   const [error, setError] = useState("");
   const inputFile = React.useRef();
+ 
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -61,6 +66,7 @@ export const UploadSetup = ({ setSetup, setup }) => {
           ]);
           setNewArticle(articleDefault);
           inputFile.current.value = "";
+          setShow(!show);
         });
       });
     } else {
@@ -70,9 +76,14 @@ export const UploadSetup = ({ setSetup, setup }) => {
 
 
   return (
-    <section>
-      <h2>Añadir artículo</h2>
-      <div className="inputsNewArticle">
+
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header className="headerModal">
+          <img className="logoModal" src="images/logoSM.png" alt="" />
+          <Modal.Title>Añadir artículo</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <div className="inputsNewArticle">
         <input
           type="text"
           onChange={handleChange}
@@ -87,12 +98,7 @@ export const UploadSetup = ({ setSetup, setup }) => {
           name="descripcion"
           placeholder="Descripción"
         />
-        <input 
-          ref={inputFile}
-          type="file"
-          onChange={handleFile}
-          placeholder="Seleccionar imagen"
-        />
+      
         <input
           type="text"
           onChange={handleChange}
@@ -100,9 +106,25 @@ export const UploadSetup = ({ setSetup, setup }) => {
           name="link"
           placeholder="Link"
         />
+          <input className="inputFile"
+          ref={inputFile}
+          type="file"
+          onChange={handleFile}
+          placeholder="Seleccionar imagen"
+        />
       </div>
-      <Button onClick={handleSubmit}>Añadir</Button>
+     
       <p className="error">{error}</p>
-    </section>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button className="buttonModal2" variant="primary" onClick={handleSubmit}>
+            Añadir
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
   );
 };

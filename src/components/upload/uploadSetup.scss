@@ -8,17 +8,34 @@
     align-items: center;
     justify-content: space-around;
     gap: 20px;
-    input{
-        width: 300px;
+    input, select{
+        width: 80%;
+        border-radius: 5px;
+        border: 1px solid gray;
+    }
+    .inputFile{
+        
+        border: 0px;
+        border-radius: 0px;
+        
     }
 }
-section{
-    margin-top: 30px;
-    color: white;
-    button{
-        margin-top: 20px;
-    }
-    .error{
-        color: green;
-    }
+.error{
+    color: red;
+}
+.logoModal{
+    width: 60px;
+}
+.headerModal{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.buttonModal2{
+    border: 1px solid white !important;
+    background-color: purple;
+}
+.buttonModal2:hover{
+    
+    background-color: green;
 }

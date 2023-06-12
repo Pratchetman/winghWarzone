@@ -10,6 +10,7 @@ import { UploadSetup } from "../upload/UploadSetup";
 
 export const Setup = () => {
   const [setup, setSetup] = useState();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const dbRef = ref(getDatabase());
@@ -33,14 +34,14 @@ export const Setup = () => {
     });
 
     const storage = getStorage();
-    const fileName = img.substring(img.indexOf("/o/") + 2, img.indexOf("?"))
+    const fileName = img.substring(img.indexOf("/o/") + 2, img.indexOf("?"));
     // Create a reference to the file to delete
     const delRef = ref2(storage, fileName);
 
     // Delete the file
     deleteObject(delRef)
       .then(() => {
-        console.log("Archivo borrado correctamente")
+        console.log("Archivo borrado correctamente");
       })
       .catch((error) => {
         console.log(error);
@@ -84,8 +85,13 @@ export const Setup = () => {
             })}
         </div>
       </div>
-
-      <UploadSetup setSetup={setSetup} setup={setup} />
+      <Button className="buttonModal" variant="primary" onClick={()=>setShow(!show)}>Nuevo artículo</Button>
+      <UploadSetup
+        show={show}
+        setShow={setShow}
+        setSetup={setSetup}
+        setup={setup}
+      />
     </>
   );
 };

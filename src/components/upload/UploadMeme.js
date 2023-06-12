@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./uploadSetup.scss";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app } from "../../utils/fireBaseConf";
 import { getDatabase, ref as ref2, set, get, child } from "firebase/database";
@@ -13,11 +13,14 @@ const memeDefault = {
   img: "",
 };
 
-export const UploadMeme = ({ meme, setMeme }) => {
+export const UploadMeme = ({ meme, setMeme, show, setShow }) => {
   const [newMeme, setNewMeme] = useState(memeDefault);
   const [file, setFile] = useState();
   const [error, setError] = useState("");
   const inputFile = React.useRef();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
@@ -59,7 +62,7 @@ export const UploadMeme = ({ meme, setMeme }) => {
           ]);
           setNewMeme(memeDefault);
           inputFile.current.value = "";
-          console.log(file);
+          setShow(!show);
         });
       });
     } else {
@@ -68,8 +71,14 @@ export const UploadMeme = ({ meme, setMeme }) => {
   };
 
   return (
-    <section>
-      <h2>Añadir artículo</h2>
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header className="headerModal">
+          <img className="logoModal" src="images/logoSM.png" alt="" />
+          <Modal.Title>Añadir nuevo meme</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        <section>
+     
       <div className="inputsNewArticle">
         <input
           type="text"
@@ -79,15 +88,27 @@ export const UploadMeme = ({ meme, setMeme }) => {
           placeholder="Texto"
         />
 
-        <input
+        <input className="inputFile"
           type="file" ref={inputFile}
           onChange={handleFile}
           placeholder="Seleccionar imagen"
           
         />
       </div>
-      <Button onClick={handleSubmit}>Añadir</Button>
+      
       <p className="error">{error}</p>
     </section>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button className="buttonModal2" variant="primary" onClick={handleSubmit}>
+            Añadir
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
   );
 };

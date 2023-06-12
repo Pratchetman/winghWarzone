@@ -1,6 +1,14 @@
 .principalMain {
   min-height: calc(100vh - 56px - 61px);
   color: white;
+  >hr{
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(19, 19, 19);
+    
+  }
   >h3{
     margin-top: 20px;
   }

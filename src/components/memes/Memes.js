@@ -6,9 +6,11 @@ import { app } from "../../utils/fireBaseConf";
 import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as ref2, deleteObject } from "firebase/storage";
 import { UploadMeme } from "../upload/UploadMeme";
+import { Button } from "react-bootstrap";
 
 export const Memes = () => {
   const [meme, setMeme] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const dbRef = ref(getDatabase());
@@ -71,8 +73,8 @@ export const Memes = () => {
             })}
         </div>
       </div>
-
-      <UploadMeme setMeme={setMeme} meme={meme} />
+      <Button className="buttonModal" variant="primary" onClick={()=>setShow(!show)}>Nuevo meme</Button>
+      <UploadMeme setMeme={setMeme} meme={meme} show={show} setShow={setShow} />
     </>
   );
 };

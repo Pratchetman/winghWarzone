@@ -1,0 +1,71 @@
+.principalWz2 {
+  min-height: calc(100vh - 56px - 61px);
+  h2 {
+    color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  h6 {
+    color: gray;
+    margin-bottom: 20px;
+  }
+  .contentNavs {
+    margin: auto;
+    display: flex;
+    width: 90%;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    .weaponsNav1 {
+      width: 45%;
+      min-width: 290px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      Button {
+        width: 100px;
+        padding: 2px;
+        height: 30px;
+        background-color: purple;
+        border: 1px solid rgb(255, 255, 255) !important;
+      }
+      Button:hover {
+        border: 1px solid rgb(255, 255, 255) !important;
+        background-color: rgb(131, 80, 131);
+      }
+    }
+    .weaponsNav2 {
+      width: 50%;
+      display: flex;
+      width: 45%;
+      min-width: 290px;
+      justify-content: flex-start;
+      gap: 10px;
+      Button {
+        width: 100px;
+        height: 30px;
+        padding: 2px;
+        border: 1px solid rgb(255, 255, 255) !important;
+        background-color: purple;
+      }
+      Button:hover {
+        border: 1px solid rgb(255, 255, 255) !important;
+        background-color: rgb(131, 80, 131);
+      }
+    }
+    #selected {
+      background-color: green !important;
+      border: 1px solid rgb(255, 255, 255) !important;
+    }
+  }
+  .addWeapon {
+    border: 1px solid white;
+    background-color: purple;
+    margin-top: 30px;
+  }
+  .addWeapon:hover {
+    background-color: rgb(131, 80, 131);
+  }
+}
