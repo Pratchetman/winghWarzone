@@ -3,6 +3,19 @@
     color: rgb(121, 121, 121);
     padding: 20px;
     background-color: rgb(44, 44, 44);
+    .footRrss{
+        display: flex;
+        justify-content: center;
+        gap:15px;
+        margin-bottom: 20px;
+        a{
+            width: 30px;
+            img{
+                width: 100%;
+                filter:grayscale(0.5);
+            }
+        }
+    }
     p{
         font-size: 14px;
     margin: 0;

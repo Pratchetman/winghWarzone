@@ -57,6 +57,7 @@ export const Memes = () => {
     <>
       <div className="principalMemes">
         <h3>Memes</h3>
+        <hr />
 
         <div className="imagenesMemes">
           {meme &&

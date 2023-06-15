@@ -14,6 +14,7 @@ export const About = () => {
         <div className="text1">
           <img src="images/logoSM.png" alt="" />
           <h3>Sobre mi</h3>
+          <hr />
           <p>Nací un 21 de agosto de 1987 en Barcelona aunque vivo en Valencia, y llevo jugando a videojuegos más de 20 años. Empecé siendo campeón de Europa en 2 ocasiones en Enemy territory, en eventos presenciales en Holanda.</p>
         </div>
       </section>

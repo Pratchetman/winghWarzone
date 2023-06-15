@@ -9,6 +9,13 @@
     color: gray;
     margin-bottom: 20px;
   }
+  >hr{
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(19, 19, 19);
+  }
   .contentNavs {
     margin: auto;
     display: flex;
@@ -67,5 +74,66 @@
   }
   .addWeapon:hover {
     background-color: rgb(131, 80, 131);
+  }
+  .cardsContainer{
+    margin: auto;
+    width: 90vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .weaponCard{
+      width: 40%;
+      min-width: 290px;
+      color: white;
+      overflow: hidden;
+      margin-top: 30px;
+      border-radius: 5px;
+      overflow: hidden;
+      background-image: url("../../../../public/images/fondo-patron.webp");
+      background-position: center;
+      background-size: contain;
+      
+      >div{
+        display: flex;
+        justify-content: space-evenly;
+        border-bottom: 1px solid gray;
+        p{
+          margin: 7px;
+          font-weight: bold;
+          
+        }
+      }
+      img{
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: center;
+      }
+  
+    }
+    .SMG{
+      border: 2px solid white;
+    }
+    .BR{
+      border: 2px solid rgb(226, 75, 75);
+    }
+    .AR{
+      border: 2px solid green;
+    }
+    .Pistola{
+      border: 2px solid rgb(56, 68, 230);
+    }
+    .TR{
+      border: 2px solid rgb(231, 218, 32);
+    }
+    .LMG{
+      border: 2px solid purple;
+    }
+    .SR{
+      border: 2px solid rgb(83, 83, 83);
+    }
+    .SG{
+      border: 2px solid rgb(112, 0, 0);
+    }
   }
 }

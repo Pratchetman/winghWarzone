@@ -56,6 +56,7 @@ export const Setup = () => {
     <>
       <div className="principalSetup">
         <h3>Mi Setup</h3>
+        <hr />
         <div className="bigSetup">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/wingh-eb474.appspot.com/o/setup.jpeg?alt=media&token=e2d6ebff-6fc8-43c2-a5a6-1af10288a737&_gl=1*7egzb6*_ga*MTkxNDI5MzA0NS4xNjg1MjEzNDAx*_ga_CW55HF8NVT*MTY4NTk1NjcyNi42LjEuMTY4NTk1ODYyNy4wLjAuMA.."
