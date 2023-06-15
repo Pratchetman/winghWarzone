@@ -16,7 +16,7 @@ export const Rrss = () => {
     get(child(dbRef, `rrss/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          setRrss(Object.values(snapshot.val()).sort((a, b)=> b.id - a.id));
+          setRrss(Object.values(snapshot.val()).sort((a, b)=> a.id - b.id));
         } else {
           console.log("No data available");
         }
