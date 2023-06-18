@@ -27,6 +27,7 @@ export const Memes = () => {
       });
   }, [setMeme]);
 
+
   console.log(meme);
 
   const handleDelete = (id, img) => {
@@ -50,7 +51,7 @@ export const Memes = () => {
         console.log(error);
       });
 
-    setMeme(meme.filter((elem) => elem.id != id));
+    setMeme(meme.filter((elem) => elem.id !== id));
   };
 
   return (

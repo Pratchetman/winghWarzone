@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import "./main.scss";
 import { useNavigate } from "react-router-dom";
+import { WinghavenContext } from "../../context/WinghavenContext";
 
 export const Main = () => {
   const navigate = useNavigate();
+  const {logged} = useContext(WinghavenContext)
 
+  console.log(logged)
 
   return (
     <div className="principalMain">

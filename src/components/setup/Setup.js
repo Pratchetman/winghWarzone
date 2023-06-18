@@ -47,7 +47,7 @@ export const Setup = () => {
         console.log(error);
       });
 
-    setSetup(setup.filter((elem) => elem.id != id));
+    setSetup(setup.filter((elem) => elem.id !== id));
   };
 
   console.log(setup);
@@ -86,7 +86,14 @@ export const Setup = () => {
             })}
         </div>
       </div>
-      <Button className="buttonModal" variant="primary" onClick={()=>setShow(!show)}>Nuevo artículo</Button>
+      <Button
+        className="buttonModal"
+        variant="primary"
+        onClick={() => setShow(!show)}
+      >
+        Nuevo artículo
+      </Button>
+
       <UploadSetup
         show={show}
         setShow={setShow}

@@ -7,7 +7,10 @@ const firebaseConfig = {
     projectId: "wingh-eb474",
     storageBucket: "wingh-eb474.appspot.com",
     messagingSenderId: "120692076021",
-    appId: "1:120692076021:web:396b11b1a960b65c3d44bc"
+    appId: "1:120692076021:web:396b11b1a960b65c3d44bc",
+   
   }
 
 export const app = initializeApp(firebaseConfig);
+
+
