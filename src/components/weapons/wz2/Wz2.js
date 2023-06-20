@@ -13,6 +13,7 @@ export const Wz2 = () => {
   const [weapons, setWeapons] = useState([]);
   const [FiltWeapons, setFiltWeapons] = useState([]);
   const [search, setSearch] = useState("");
+  const [aux, setAux] = useState(true);
   const searcher = useRef();
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export const Wz2 = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [weapons]);
+  }, [aux]);
 
   const handleWType = (e) => {
     if (wType === e) {
@@ -125,7 +126,7 @@ export const Wz2 = () => {
               SR
             </Button>
             <Button
-              onClick={() => handleWType("PS")}
+              onClick={() => handleWType("Pistola")}
               id={`${wType === "PS" && "selected"}`}
             >
               Pistola
@@ -164,7 +165,7 @@ export const Wz2 = () => {
           </Button>
         )}
       </div>
-      <UploadWeapon setShow={setShow} show={show} weapons={weapons} setWeapons={setWeapons} />
+      <UploadWeapon setShow={setShow} show={show} aux={aux} setAux={setAux} />
     </>
   );
 };
