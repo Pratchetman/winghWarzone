@@ -1,14 +1,53 @@
 .principalWz2 {
   min-height: calc(100vh - 56px - 61px);
+  width: 90%;
+  margin: auto;
   h2 {
     color: white;
     margin-top: 30px;
     margin-bottom: 30px;
   }
-  h6 {
+  .mostrando{
     color: gray;
+    text-align: start;
+    padding-left: 7%;
+    margin: 10px 0px 0px 0px;
+  }
+  .dflex{
+    display: flex;
+    align-items: center;
+    h6{
+      text-align: start;
+      color: gray;
+      margin: 0px;
+    }
+    img{
+      width: 20px;
+      margin-right: 5px;
+    }
+    input{
+      background-color: rgba(0, 0, 0, 0);
+      border: 1px solid gray;
+      border-radius: 7px;
+      color: gray;
+      padding: 0 8px;
+      
+    }
+    input::placeholder{
+      text-align:start ;
+      
+    }
+  }
+  .jcBetween{
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
     margin-bottom: 20px;
   }
+ 
   >hr{
     width: 30%;
     margin: auto;
@@ -93,7 +132,8 @@
       background-position: center;
       background-size: contain;
       
-      >div{
+      .titleWp{
+     
         display: flex;
         justify-content: space-evenly;
         border-bottom: 1px solid gray;
@@ -103,12 +143,21 @@
           
         }
       }
-      img{
+      .weapon{
+        background-color: rgba(0, 0, 0, 0.596);
         width: 100%;
-        height: auto;
-        object-fit: contain;
-        object-position: center;
+        height: 100%;
+        padding: 20px 10px;
+      img{
+         
+          width: 100%;
+          height: auto;
+          object-fit: contain;
+          object-position: center;
+          filter: drop-shadow(1px 2px 50px purple);
+        }
       }
+   
   
     }
     .SMG{

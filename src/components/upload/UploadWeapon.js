@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { Button, InputGroup, Modal } from "react-bootstrap";
 import { getDatabase, ref as ref2, set, get, child } from "firebase/database";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app } from "../../utils/fireBaseConf";
@@ -19,6 +19,7 @@ const weaponDefault = {
   type: "",
   img: "",
   link: "",
+  meta: false,
   opt: [],
 };
 
@@ -32,6 +33,7 @@ const initialAccList = [
   "Munición",
   "Cargador",
   "Empuñadura trasera",
+  "Peine"
 ];
 
 export const UploadWeapon = ({ show, setShow }) => {
@@ -76,6 +78,10 @@ export const UploadWeapon = ({ show, setShow }) => {
     setWeapon({ ...weapon, [name]: value, opt: optionList });
     
   };
+
+  const handleCheck = () =>{
+    setWeapon({...weapon, meta: !weapon.meta});
+  }
 
   const handleChangeOpt = (e) => {
     const { name, value } = e.target;
@@ -187,6 +193,11 @@ export const UploadWeapon = ({ show, setShow }) => {
             onChange={handleFile}
             placeholder="Seleccionar imagen"
           />
+          <div className="dflex">
+          <label htmlFor="meta">Meta</label>
+          <input type="checkbox" id="meta" onChange={handleCheck} value={weapon.meta} name="meta"/>
+          </div>
+          
           {optionList.map((elem, index) => {
             return (
               <div className="mapAccCont">

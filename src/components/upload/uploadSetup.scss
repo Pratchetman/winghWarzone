@@ -13,6 +13,19 @@
     border-radius: 5px;
     border: 1px solid gray;
   }
+  .dflex{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    label{
+      color: black;
+    }
+    input{
+      width: 15px;
+    }
+  }
+ 
   .mapAccCont {
     display: flex;
     justify-content: space-between;

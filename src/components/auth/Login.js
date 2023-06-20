@@ -5,7 +5,6 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { saveLocalStorageWingh } from "../../utils/localStorage";
 import { useNavigate } from "react-router-dom";
 
-
 const loginDefault = {
   mail: "",
   password: "",
@@ -30,11 +29,11 @@ export const Login = ({ show, setShow }) => {
   };
   const handleSubmit = () => {
     const auth = getAuth();
-    console.log("empiezo el submit")
+    console.log("empiezo el submit");
     signInWithEmailAndPassword(auth, login.mail, login.password)
       .then((userCredential) => {
         const uid = userCredential.user.uid;
-        console.log("ya tengo el id", uid)
+        console.log("ya tengo el id", uid);
         setUser(uid);
         setLogged(true);
         navigate("/");
@@ -52,40 +51,48 @@ export const Login = ({ show, setShow }) => {
         <Modal.Title>Inicia sesión</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <section>
-          <div className="inputsNewArticle">
-            <input
-              type="mail"
-              onChange={handleChange}
-              value={login.mail}
-              name="mail"
-              placeholder="Introduce email"
-              autoComplete="username"
-            />
-            <input
-              type="password"
-              onChange={handleChange}
-              value={login.password}
-              name="password"
-              placeholder="Contraseña"
-              autoComplete="password"
-            />
-          </div>
+        {!logged ? (
+          <section>
+            <div className="inputsNewArticle">
+              <input
+                type="mail"
+                onChange={handleChange}
+                value={login.mail}
+                name="mail"
+                placeholder="Introduce email"
+                autoComplete="username"
+              />
+              <input
+                type="password"
+                onChange={handleChange}
+                value={login.password}
+                name="password"
+                placeholder="Contraseña"
+                autoComplete="password"
+              />
+            </div>
 
-          <p className="error">{error}</p>
-        </section>
+            <p className="error">{error}</p>
+          </section>
+        ) : (
+          <section>
+            <div className="inputsNewArticle">
+              <h6>Ya estás logueado</h6>
+            </div>
+          </section>
+        )}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           Cerrar
         </Button>
-        <Button
+        {!logged && <Button
           className="buttonModal2"
           variant="primary"
           onClick={handleSubmit}
         >
-          Añadir
-        </Button>
+          Iniciar sesión
+        </Button>}
       </Modal.Footer>
     </Modal>
   );
