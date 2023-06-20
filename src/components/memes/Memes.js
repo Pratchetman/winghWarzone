@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./memes.scss";
 
 import { app } from "../../utils/fireBaseConf";
@@ -7,17 +7,19 @@ import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as ref2, deleteObject } from "firebase/storage";
 import { UploadMeme } from "../upload/UploadMeme";
 import { Button } from "react-bootstrap";
+import { WinghavenContext } from "../../context/WinghavenContext";
 
 export const Memes = () => {
   const [meme, setMeme] = useState([]);
   const [show, setShow] = useState(false);
-
+  const {logged} = useContext(WinghavenContext);
+  
   useEffect(() => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `memes/`))
       .then((snapshot) => {
         if (snapshot.exists()) {
-          setMeme(Object.values(snapshot.val()).sort((a, b)=> b.id - a.id));
+          setMeme(Object.values(snapshot.val()).sort((a, b) => b.id - a.id));
         } else {
           console.log("No data available");
         }
@@ -26,7 +28,6 @@ export const Memes = () => {
         console.error(error);
       });
   }, [setMeme]);
-
 
   console.log(meme);
 
@@ -39,7 +40,7 @@ export const Memes = () => {
     const storage = getStorage();
     const fileName = img.substring(img.indexOf("%2F") + 3, img.indexOf("?"));
     // Create a reference to the file to delete
-    console.log(fileName)
+    console.log(fileName);
     const delRef = ref2(storage, "memes/" + fileName);
 
     // Delete the file
@@ -66,7 +67,12 @@ export const Memes = () => {
               return (
                 <>
                   <div className="oneImageMarco">
-                    <img onClick={()=>handleDelete(elem.id, elem.img)} className="delete" src="images/delete2.png" alt="" />
+                    <img
+                      onClick={() => handleDelete(elem.id, elem.img)}
+                      className="delete"
+                      src="images/delete2.png"
+                      alt=""
+                    />
                     <h6>{elem.text}</h6>
                     <img src={elem.img} alt="" />
                   </div>
@@ -75,8 +81,23 @@ export const Memes = () => {
             })}
         </div>
       </div>
-      <Button className="buttonModal" variant="primary" onClick={()=>setShow(!show)}>Nuevo meme</Button>
-      <UploadMeme setMeme={setMeme} meme={meme} show={show} setShow={setShow} />
+      {logged && (
+        <>
+          <Button
+            className="buttonModal"
+            variant="primary"
+            onClick={() => setShow(!show)}
+          >
+            Nuevo meme
+          </Button>
+          <UploadMeme
+            setMeme={setMeme}
+            meme={meme}
+            show={show}
+            setShow={setShow}
+          />
+        </>
+      )}
     </>
   );
 };

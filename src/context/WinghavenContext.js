@@ -7,7 +7,7 @@ export const WinghavenContext = createContext();
 export const WinghavenProvider = (props) => {
   const [user, setUser] = useState({});
   const [logged, setLogged] = useState(false);
-  const [token, setToken] = useState();
+  
 
   useEffect(() => {
     const auth = getAuth();
@@ -27,7 +27,7 @@ export const WinghavenProvider = (props) => {
   }, [logged]);
   
   return (
-    <WinghavenContext.Provider value={{logged, setLogged, setUser, user, setToken}}>
+    <WinghavenContext.Provider value={{logged, setLogged, setUser, user}}>
         {props.children}
     </WinghavenContext.Provider> 
   )

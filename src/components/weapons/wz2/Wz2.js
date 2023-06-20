@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { getDatabase, ref, set, get, child, remove } from "firebase/database";
-import { getStorage, ref as ref2, deleteObject } from "firebase/storage";
+
 import "./wz2.scss";
 import { UploadWeapon } from "../../upload/UploadWeapon";
 import { WinghavenContext } from "../../../context/WinghavenContext";
@@ -31,19 +31,19 @@ export const Wz2 = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [setWeapons]);
+  }, [weapons]);
 
   const handleWType = (e) => {
     if (wType === e) {
       setWType("");
       setFiltWeapons(weapons);
       setSearch("");
-      searcher.current.value= "";
+      searcher.current.value = "";
     } else {
       setWType(e);
       setFiltWeapons(weapons.filter((elem) => elem.type === e));
       setSearch("");
-      searcher.current.value= "";
+      searcher.current.value = "";
     }
   };
 
@@ -51,7 +51,9 @@ export const Wz2 = () => {
     setSearch(e.target.value);
 
     setFiltWeapons(
-      weapons.filter((elem) => elem.nombre.toLowerCase().includes(e.target.value.toLowerCase()))
+      weapons.filter((elem) =>
+        elem.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+      )
     );
     setWType("");
   };
@@ -132,21 +134,29 @@ export const Wz2 = () => {
         </div>
         <p className="mostrando">Mostrando {FiltWeapons.length} resultados.</p>
         <div className="cardsContainer">
-          {FiltWeapons.map((elem, index) => {
-            return (
-              <div className={`weaponCard ${elem.type}`}>
-                <div className="titleWp">
-                  <p>{elem.nombre}</p>
-                  <p>
-                    <span>Tipo de arma</span>&nbsp;&nbsp; {elem.type}
-                  </p>
+          {FiltWeapons.length > 0 &&
+            FiltWeapons.map((elem, index) => {
+              return (
+                <div key={index} className={`weaponCard ${elem.type}`}>
+                  <div className="titleWp">
+                    <p>{elem.nombre}</p>
+                    <p>
+                      <span>Tipo de arma</span>&nbsp;&nbsp; {elem.type}
+                    </p>
+                  </div>
+                  <div className="weapon">
+                    <img className="imgWp" src={elem.img} alt="" />
+                    {elem.meta == true && (
+                      <img
+                        className="logoMeta"
+                        src="./images/logoMeta.png"
+                        alt=""
+                      />
+                    )}
+                  </div>
                 </div>
-                <div className="weapon">
-                  <img src={elem.img} alt="" />
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
         {logged && (
           <Button className="addWeapon" onClick={() => setShow(!show)}>
@@ -154,7 +164,7 @@ export const Wz2 = () => {
           </Button>
         )}
       </div>
-      <UploadWeapon setShow={setShow} show={show} />
+      <UploadWeapon setShow={setShow} show={show} weapons={weapons} setWeapons={setWeapons} />
     </>
   );
 };

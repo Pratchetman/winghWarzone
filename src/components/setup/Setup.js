@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import "./setup.scss";
 
@@ -7,10 +7,12 @@ import { app } from "../../utils/fireBaseConf";
 import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import { getStorage, ref as ref2, deleteObject } from "firebase/storage";
 import { UploadSetup } from "../upload/UploadSetup";
+import { WinghavenContext } from "../../context/WinghavenContext";
 
 export const Setup = () => {
   const [setup, setSetup] = useState();
   const [show, setShow] = useState(false);
+  const {logged} = useContext(WinghavenContext)
 
   useEffect(() => {
     const dbRef = ref(getDatabase());
@@ -69,12 +71,12 @@ export const Setup = () => {
               return (
                 <>
                   <div className="oneImageMarco">
-                    <img
+                    {logged && <img
                       onClick={() => handleDelete(elem.id, elem.img)}
                       className="delete"
                       src="images/delete2.png"
                       alt=""
-                    />
+                    />}
                     <h6>{elem.nombre}</h6>
                     <p>{elem.descripcion}</p>
                     <a href={elem.link} key={index} target="_blank">
@@ -86,7 +88,7 @@ export const Setup = () => {
             })}
         </div>
       </div>
-      <Button
+      {logged && <><Button
         className="buttonModal"
         variant="primary"
         onClick={() => setShow(!show)}
@@ -100,6 +102,7 @@ export const Setup = () => {
         setSetup={setSetup}
         setup={setup}
       />
+      </>}
     </>
   );
 };

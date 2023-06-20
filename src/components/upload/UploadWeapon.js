@@ -36,7 +36,7 @@ const initialAccList = [
   "Peine"
 ];
 
-export const UploadWeapon = ({ show, setShow }) => {
+export const UploadWeapon = ({ show, setShow, weapons, setWeapons }) => {
   const [weapon, setWeapon] = useState(weaponDefault);
   const [accList, setAccList] = useState(initialAccList);
   const [option, setOption] = useState(optDefault);
@@ -132,6 +132,7 @@ export const UploadWeapon = ({ show, setShow }) => {
         getDownloadURL(ref(storage, fileName)).then((url) => {
           let dbs = getDatabase();
           set(ref2(dbs, "wz2/" + weapon.id), {...weapon, img: url.toString()});
+          setWeapons(...weapons, {...weapon, img: url.toString()})
           setWeapon({...weaponDefault, id: Date.parse(new Date()) / 1000});
           inputFile.current.value = "";
           setShow(!show);
