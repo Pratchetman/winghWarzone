@@ -127,7 +127,7 @@ export const Wz2 = () => {
             </Button>
             <Button
               onClick={() => handleWType("Pistola")}
-              id={`${wType === "PS" && "selected"}`}
+              id={`${wType === "Pistola" && "selected"}`}
             >
               Pistola
             </Button>
@@ -147,7 +147,7 @@ export const Wz2 = () => {
                   </div>
                   <div className="weapon">
                     <img className="imgWp" src={elem.img} alt="" />
-                    {elem.meta == true && (
+                    {elem.meta === true && (
                       <img
                         className="logoMeta"
                         src="./images/logoMeta.png"

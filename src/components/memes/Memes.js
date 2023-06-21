@@ -67,14 +67,17 @@ export const Memes = () => {
               return (
                 <>
                   <div className="oneImageMarco">
-                    <img
+                    {logged &&<img
                       onClick={() => handleDelete(elem.id, elem.img)}
                       className="delete"
                       src="images/delete2.png"
                       alt=""
-                    />
+                    />}
                     <h6>{elem.text}</h6>
-                    <img src={elem.img} alt="" />
+                    <div className="oneImage">
+                    <img  src={elem.img} alt="" />
+                    </div>
+                    
                   </div>
                 </>
               );

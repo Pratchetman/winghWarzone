@@ -7,38 +7,36 @@
     margin-top: 30px;
     margin-bottom: 30px;
   }
-  .mostrando{
+  .mostrando {
     color: gray;
     text-align: start;
     padding-left: 7%;
     margin: 10px 0px 0px 0px;
   }
-  .dflex{
+  .dflex {
     display: flex;
     align-items: center;
-    h6{
+    h6 {
       text-align: start;
       color: gray;
       margin: 0px;
     }
-    img{
+    img {
       width: 20px;
       margin-right: 5px;
     }
-    input{
+    input {
       background-color: rgba(0, 0, 0, 0);
       border: 1px solid gray;
       border-radius: 7px;
       color: gray;
       padding: 0 8px;
-      
     }
-    input::placeholder{
-      text-align:start ;
-      
+    input::placeholder {
+      text-align: start;
     }
   }
-  .jcBetween{
+  .jcBetween {
     justify-content: space-between;
     align-items: center;
     gap: 20px;
@@ -47,8 +45,8 @@
     margin: auto;
     margin-bottom: 20px;
   }
- 
-  >hr{
+
+  > hr {
     width: 30%;
     margin: auto;
     margin-top: 20px;
@@ -114,13 +112,13 @@
   .addWeapon:hover {
     background-color: rgb(131, 80, 131);
   }
-  .cardsContainer{
+  .cardsContainer {
     margin: auto;
     width: 90vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    .weaponCard{
+    .weaponCard {
       width: 40%;
       min-width: 290px;
       color: white;
@@ -131,33 +129,30 @@
       background-image: url("../../../../public/images/fondo-patron.webp");
       background-position: center;
       background-size: contain;
-      
-      .titleWp{
-     
+
+      .titleWp {
         display: flex;
         justify-content: space-evenly;
         border-bottom: 1px solid gray;
-        p{
+        p {
           margin: 7px;
           font-weight: bold;
-          
         }
       }
-      .weapon{
+      .weapon {
         background-color: rgba(0, 0, 0, 0.596);
         width: 100%;
         height: 100%;
         padding: 20px 10px;
         position: relative;
-      .imgWp{
-         
+        .imgWp {
           width: 100%;
           height: auto;
           object-fit: contain;
           object-position: center;
           filter: drop-shadow(1px 2px 50px purple);
         }
-        .logoMeta{
+        .logoMeta {
           width: 10%;
           position: absolute;
           left: 13px;
@@ -165,31 +160,29 @@
           filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.568));
         }
       }
-   
-  
     }
-    .SMG{
+    .SMG {
       border: 2px solid white;
     }
-    .BR{
+    .BR {
       border: 2px solid rgb(226, 75, 75);
     }
-    .AR{
+    .AR {
       border: 2px solid green;
     }
-    .Pistola{
+    .Pistola {
       border: 2px solid rgb(56, 68, 230);
     }
-    .TR{
+    .TR {
       border: 2px solid rgb(231, 218, 32);
     }
-    .LMG{
+    .LMG {
       border: 2px solid purple;
     }
-    .SR{
+    .SR {
       border: 2px solid rgb(83, 83, 83);
     }
-    .SG{
+    .SG {
       border: 2px solid rgb(112, 0, 0);
     }
   }
