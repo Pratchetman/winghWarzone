@@ -5,6 +5,7 @@ import { getDatabase, ref, set, get, child, remove } from "firebase/database";
 import "./wz2.scss";
 import { UploadWeapon } from "../../upload/UploadWeapon";
 import { WinghavenContext } from "../../../context/WinghavenContext";
+import { useNavigate } from "react-router-dom";
 
 export const Wz2 = () => {
   const { logged } = useContext(WinghavenContext);
@@ -15,7 +16,7 @@ export const Wz2 = () => {
   const [search, setSearch] = useState("");
   const [aux, setAux] = useState(true);
   const searcher = useRef();
-
+  const navigate = useNavigate()
   useEffect(() => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `wz2/`))
@@ -138,7 +139,7 @@ export const Wz2 = () => {
           {FiltWeapons.length > 0 &&
             FiltWeapons.map((elem, index) => {
               return (
-                <div key={index} className={`weaponCard ${elem.type}`}>
+                <div key={index} className={`weaponCard ${elem.type}`} onClick={()=>navigate(`/wz2/${elem.id}`)}>
                   <div className="titleWp">
                     <p>{elem.nombre}</p>
                     <p>

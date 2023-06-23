@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { WinghavenContext } from "../../context/WinghavenContext";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { saveLocalStorageWingh } from "../../utils/localStorage";
+
 import { useNavigate } from "react-router-dom";
 
 const loginDefault = {

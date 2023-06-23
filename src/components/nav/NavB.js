@@ -26,7 +26,7 @@ export const NavB = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Container className='containerNav'>
-      <Navbar.Brand as={Link} to="/"><img src="images/logoSM.png" alt="" /></Navbar.Brand>
+      <Navbar.Brand as={Link} to="/"><img  src="../images/logoSM.png" alt="" /></Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto">

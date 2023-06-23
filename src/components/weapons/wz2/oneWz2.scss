@@ -1,0 +1,151 @@
+.oneWz2Principal {
+  min-height: calc(100vh - 56px - 61px);
+  width: 90%;
+  margin: auto;
+
+  .title {
+    display: flex;
+    margin-top: 30px;
+    gap: 20px;
+    h2 {
+      color: white;
+      text-align: start;
+    }
+    img {
+      width: auto;
+      height: 30px;
+      filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.568));
+    }
+  }
+
+  hr {
+    width: 30%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgb(19, 19, 19);
+  }
+  .config {
+    width: 100%;
+    margin-bottom: 10px;
+    // box-shadow: 2px 2px 5px black;
+    border-radius: 5px;
+    // background-color: rgba(255, 255, 255, 0.171);
+    // background-image: url("../../../../public/images/fondo-patron.webp");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    gap: 20px;
+    #SMG {
+      border-left: 3px solid white;
+    }
+    #BR {
+      border-left: 3px solid rgb(226, 75, 75);
+    }
+    #AR {
+      border-left: 3px solid green;
+    }
+    #Pistola {
+      border-left: 3px solid rgb(56, 68, 230);
+    }
+    #TR {
+      border-left: 3px solid rgb(231, 218, 32);
+    }
+    #LMG {
+      border-left: 3px solid purple;
+    }
+    #SR {
+      border-left: 3px solid rgb(83, 83, 83);
+    }
+    #SG {
+      border-left: 3px solid rgb(112, 0, 0);
+    }
+    .oneConfig {
+      width: 33%;
+      min-width: 340px;
+      height: 60px;
+      border-radius: 8px;
+
+      // background-color: rgb(44, 44, 44);
+      background-image: url("../../../../public/images/fondo-patron.webp");
+      background-position: center;
+      background-size: cover;
+      box-shadow: 2px 2px 5px black;
+      // border: 1px solid rgb(92, 92, 92);
+      margin-top: 10px;
+      margin-bottom: 2px;
+      // border-left: 3px solid rgb(56, 68, 230) ;
+      // min-width: 300px;
+      overflow: hidden;
+      .filterConfig {
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.425);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        p {
+          color: white;
+          font-size: 13px;
+          span {
+            font-weight: 800;
+          }
+          margin: 0px;
+        }
+      }
+    }
+  }
+  .oneWeaponBg {
+    width: 100%;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  .SMG {
+    border: 2px solid white;
+  }
+  .BR {
+    border: 2px solid rgb(226, 75, 75);
+  }
+  .AR {
+    border: 2px solid green;
+  }
+  .Pistola {
+    border: 2px solid rgb(56, 68, 230);
+  }
+  .TR {
+    border: 2px solid rgb(231, 218, 32);
+  }
+  .LMG {
+    border: 2px solid purple;
+  }
+  .SR {
+    border: 2px solid rgb(83, 83, 83);
+  }
+  .SG {
+    border: 2px solid rgb(112, 0, 0);
+  }
+  iframe {
+    margin-top: 25px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px black;
+    width: 100%;
+    height: 50vw;
+  }
+}
+@media (max-width: 430px) {
+  .oneWz2Principal {
+    .config {
+      gap: 0px !important;
+      .oneConfig {
+        width: 95% !important;
+        min-width: 240px !important;
+      }
+    }
+  }
+}
