@@ -3,6 +3,7 @@ import { Button, InputGroup, Modal } from "react-bootstrap";
 import { getDatabase, ref as ref2, set, get, child } from "firebase/database";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { app } from "../../utils/fireBaseConf";
+import detailsTrad from "../../utils/detTraductor";
 
 const storage = getStorage();
 
@@ -18,6 +19,7 @@ const weaponDefault = {
   nombre: "",
   type: "",
   img: "",
+  imgBg: "",
   link: "",
   meta: false,
   opt: [],
@@ -33,7 +35,8 @@ const initialAccList = [
   "Munición",
   "Cargador",
   "Empuñadura trasera",
-  "Peine"
+  "Peine", 
+  "Cerrojo"
 ];
 
 export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
@@ -59,6 +62,19 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
     if (img.name.includes(".jpg") || img.name.includes(".png")
     || img.name.includes(".jpeg")) {
       setWeapon({ ...weapon, img: img });
+      setError("");
+    } else {
+      setError("Archivo no compatible");
+      inputFile.current.value = "";
+    }
+   
+  };
+  const handleFileBg = (e) => {
+    const imgBg = e.target.files[0];
+    console.log(imgBg.name);
+    if (imgBg.name.includes(".jpg") || imgBg.name.includes(".png")
+    || imgBg.name.includes(".jpeg")) {
+      setWeapon({ ...weapon, imgBg: imgBg });
       setError("");
     } else {
       setError("Archivo no compatible");
@@ -126,19 +142,32 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
     if (ok === true){
       const fileName = weapon.img.name.split(".")[0] + "-" + Date.parse(new Date()) / 1000 + "." + weapon.img.name.split(".")[1]; 
       const storageRef = ref(storage, fileName);
+      const fileNameBg = Date.parse(new Date()) / 1000 + "-" + weapon.imgBg.name.split(".")[0] + "." + weapon.img.name.split(".")[1]; 
+      const storageRefBg = ref(storage, "wz2/imgBg/" + fileNameBg);
       console.log(storageRef);
+      let url1 = "";
+      let url2 = "";
       uploadBytes(storageRef, weapon.img).then((snapshot) => {
         setError("");
         getDownloadURL(ref(storage, fileName)).then((url) => {
           let dbs = getDatabase();
-          set(ref2(dbs, "wz2/" + weapon.id), {...weapon, img: url.toString()});
+          url1 = url.toString();
+          
+        });
+      });
+      uploadBytes(storageRefBg, weapon.imgBg).then((snapshot) =>{
+        getDownloadURL(ref(storage, "wz2/imgBg/" + fileNameBg)).then((url) => {
+          let dbs = getDatabase();
+          url2 = url;
+          set(ref2(dbs, "wz2/" + weapon.id), {...weapon, img: url1, imgBg: url2});
           setWeapon({...weaponDefault, id: Date.parse(new Date()) / 1000});
           inputFile.current.value = "";
           setAux(!aux);
           setShow(!show);
           setOptionList([]);
-        });
-      });
+          
+        })
+      })
     }else{
       setError("Comprueba todos los datos")
     }
@@ -187,6 +216,8 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
             name="link"
             placeholder="Youtube"
           />
+          <div className="labelFile">
+          <h6 >Imagen miniatura</h6>
           <input
             className="inputFile"
             ref={inputFile}
@@ -194,6 +225,19 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
             onChange={handleFile}
             placeholder="Seleccionar imagen"
           />
+          </div>
+         
+          <div className="labelFile">
+          <h6 >Imagen detalle</h6>
+           <input
+            className="inputFile"
+            ref={inputFile}
+            type="file"
+            onChange={handleFileBg}
+            placeholder="Seleccionar imagen"
+          />
+          </div>
+          
           <div className="dflex">
           <label htmlFor="meta">Meta</label>
           <input type="checkbox" id="meta" onChange={handleCheck} value={weapon.meta} name="meta"/>
@@ -254,7 +298,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
                   <input
                     onChange={handleChangeOpt}
                     type="number"
-                    placeholder="Duración"
+                    placeholder={detailsTrad(option.name)}
                     min="-1"
                     max="1"
                     step="0.01"

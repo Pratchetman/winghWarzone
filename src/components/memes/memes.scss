@@ -2,6 +2,8 @@
     min-height: calc(100vh - 56px - 61px);
     color: white;
     margin: auto;
+    width: 70%;
+    padding-top: 60px;
     >h3{
         margin-top: 30px;
     }
@@ -15,10 +17,12 @@
     .imagenesMemes{
         margin: auto;
         margin-top: 30px;
-        width: 80vw;
+        width: 90%;
         display: flex;
         justify-content: center;
+        
         flex-wrap: wrap;
+        
         gap: 10px;
         a{
             text-decoration: none;
@@ -31,14 +35,14 @@
             align-items: space-between;
             justify-content: center;
             margin: auto;
-            width: 35vw;
-            min-width: 350px;
-            height: 370px;
+            width: 45%;
+            min-width: 300px;
+            
             border: 2px solid rgba(54, 54, 54, 0.418);
             overflow: hidden;
             padding: 10px 20px 20px 20px;
             
-            margin-top: 20px;
+            // margin-top: 20px;
             position: relative;
             
           

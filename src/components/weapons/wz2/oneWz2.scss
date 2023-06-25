@@ -1,7 +1,8 @@
 .oneWz2Principal {
   min-height: calc(100vh - 56px - 61px);
-  width: 90%;
+  width: 70%;
   margin: auto;
+  padding-top: 60px;
 
   .title {
     display: flex;
@@ -65,7 +66,7 @@
       border-left: 3px solid rgb(112, 0, 0);
     }
     .oneConfig {
-      width: 33%;
+      width: 45%;
       min-width: 340px;
       height: 60px;
       border-radius: 8px;
@@ -140,6 +141,7 @@
 }
 @media (max-width: 430px) {
   .oneWz2Principal {
+    width: 90%;
     .config {
       gap: 0px !important;
       .oneConfig {

@@ -1,7 +1,9 @@
 .principalMain {
   min-height: calc(100vh - 56px - 61px);
   color: white;
-  padding: 0px 10px;
+  padding: 60px 10px 0px 10px;
+  width: 70%;
+  margin: auto;
   >hr{
     width: 30%;
     margin: auto;
@@ -13,17 +15,23 @@
   >h3{
     margin-top: 20px;
   }
+  
   .flexJuegos {
     display: flex;
-    gap: 30px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 30px;
+    margin: auto;
     .marcoJuego {
-      width: 360px;
-      height: 550px;
+      width: 35%;
+      min-width: 220px;
+      height: 70vh;
+      max-height: 600px;
       overflow: hidden;
       border: 3px solid white;
+      border-radius: 5px;
+      overflow: hidden;
       img {
         height: 100%;
         width: 100%;
@@ -35,5 +43,34 @@
       border: 3px solid greenyellow;
       cursor: pointer;
     }
+  }
+}
+@media (min-width: 801px)  and (max-width: 1300px){
+  .principalMain {
+   
+    width: 80%;
+  .flexJuegos{
+    gap:30px;
+    .marcoJuego{
+      width: 37vw;
+      min-width: 265px;
+      min-height: 45vw;
+      height: 50vh;
+    }
+  }
+  }
+}
+@media (max-width: 800px) {
+  .principalMain {
+   
+    width: 90%;
+  .flexJuegos{
+    gap:30px;
+    .marcoJuego{
+      width: 95vw;
+      min-width: 265px;
+      height: 50vh;
+    }
+  }
   }
 }

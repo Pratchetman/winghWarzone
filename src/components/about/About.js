@@ -55,7 +55,7 @@ export const About = () => {
         ></iframe>
       </article>
       <hr />
-      <article>
+      <article className="artInvert">
         <iframe
           src="https://www.youtube.com/embed/XSvZ_5SkE9c"
           title="Overwatch - Rogue vs. Reunited - Overwatch Atlantic Showdown - Gamescom Finals - Grand Final"
@@ -99,7 +99,7 @@ export const About = () => {
         ></iframe>
       </article>
       <hr />
-      <article>
+      <article className="artInvert">
         <iframe
           src="https://www.youtube.com/embed/103e3lMFbag"
           title="😱 GANAMOS UN TORNEO DE $50.000 EN APEX LEGENDS Y NOS VAMOS A BERLIN A LA TWITCHCON! 😱"

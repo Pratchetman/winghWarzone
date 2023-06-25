@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import Collapse from 'react-bootstrap/Collapse'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,11 +7,16 @@ import { Link } from 'react-router-dom';
 import { WinghavenContext } from '../../context/WinghavenContext';
 import { getAuth } from "firebase/auth";
 import "./nav.scss";
-import { Button } from 'react-bootstrap';
+
 
 
 export const NavB = () => {
-  const {user, logged, setLogged} = useContext(WinghavenContext)
+  const {user, logged, setLogged} = useContext(WinghavenContext);
+  const [toggle, setToggle] = useState(false);
+ 
+  const toggleFunc = React.useCallback(() => setToggle(!toggle));
+ 
+  
 
   const handleSession = () =>{
     getAuth().signOut()
@@ -23,18 +29,20 @@ export const NavB = () => {
     })
   }
 
+ 
+
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed='top'>
     <Container className='containerNav'>
       <Navbar.Brand as={Link} to="/"><img  src="../images/logoSM.png" alt="" /></Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" onClick={toggleFunc}/>
+      <Navbar.Collapse id="responsive-navbar-nav" in={toggle}>
         <Nav className="me-auto">
-          <Nav.Link as={Link} to="/">HOME</Nav.Link>
-          <Nav.Link as={Link} to="/setup">MI SETUP</Nav.Link>
-          <Nav.Link as={Link} to="/memes">MEMES</Nav.Link>
-          <Nav.Link as={Link} to="/rrss">REDES SOCIALES</Nav.Link>
-          <Nav.Link as={Link} to="/about">SOBRE MI</Nav.Link>
+          <Nav.Link as={Link} onClick={toggleFunc} id='linkNav' to="/">HOME  </Nav.Link>
+          <Nav.Link as={Link} onClick={toggleFunc} id='linkNav' to="/setup">MI SETUP</Nav.Link>
+          <Nav.Link as={Link} onClick={toggleFunc} id='linkNav' to="/memes">MEMES</Nav.Link>
+          <Nav.Link as={Link} onClick={toggleFunc} id='linkNav' to="/rrss">REDES SOCIALES</Nav.Link>
+          <Nav.Link as={Link} onClick={toggleFunc} id='linkNav' to="/about">SOBRE MI</Nav.Link>
        
         </Nav>
         {logged && <Nav >

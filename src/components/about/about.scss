@@ -1,6 +1,9 @@
 .principalAbout{
     min-height: calc(100vh - 56px);
     color: white;
+    width: 70%;
+    padding-top: 60px;
+    margin: auto;
     section{
         margin: auto;
         margin-top: 20px;
@@ -9,8 +12,8 @@
         width: 80%;
         gap: 20px;
         .marcoImagen{
-            min-width: 250px;
-            width: 20vw;
+            min-width: 200px;
+            width: 20%;
             margin: auto;
             overflow: hidden;
             border-radius: 50%;
@@ -57,22 +60,25 @@
     }
    .frame1{
     margin-top: 50px;
-        width: 80vw;
+        width: 100%;
         height: 45vw;
         border: 2px solid white;
+        border-radius: 5px;
         box-shadow: 2px 2px 6px black;
     }
     article{
         margin: auto;
-        width: 80vw;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        align-items: center;
         margin-top: 60px;
-      
+        gap: 20px;
         >div{
-            width: 33vw;
+            width: 25vw;
             min-width: 300px;
+            margin: auto;
             p{
                 color: rgb(185, 185, 185);
             }
@@ -83,11 +89,13 @@
         iframe{
             border: 2px solid white;
             box-shadow: 2px 2px 6px black;
-            width: 43vw;
+            width: 37vw;
+            height: 30vw;
             min-width: 300px;
-            
-            height: 24vw;
-            min-height: 160px;
+            // height: 75%;
+            min-height: 250px;
+            margin: auto;
+            border-radius: 5px;
         }
     }
     >hr{
@@ -100,4 +108,20 @@
     .lastArt{
         align-items: center;
     }
+}
+@media (max-width: 430px){
+    .principalAbout{
+        
+        width: 90%;
+    section{
+        .text1{
+            width: 100%;
+        }
+    }  
+    .artInvert{
+        flex-wrap: nowrap;
+        flex-direction: column-reverse;
+       
+    }
+}
 }

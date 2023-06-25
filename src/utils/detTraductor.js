@@ -1,7 +1,8 @@
 
 const detailsTrad = (e)=>{
     let ret = "";
-    if (e === "Bocacha" || e === "Cañón" || e === "Acople" || e === "Culata"){
+    if (e === "Bocacha" || e === "Cañón" || e === "Acople" || e === "Culata" || e === "Cerrojo"
+    || e === "Peine" ){
       ret = "Duración";
     } else if (e === "Mira"){
       ret = "Posición del ojo";

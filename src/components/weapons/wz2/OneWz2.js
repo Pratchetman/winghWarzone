@@ -59,14 +59,14 @@ export const OneWz2 = () => {
             );
           })}
       </div>
-      <img className={`oneWeaponBg ${weapon.type}`} src={weapon.img} alt="" />
-      {weapon.type && <iframe
+      <img className={`oneWeaponBg ${weapon.type}`} src={weapon.imgBg} alt="" />
+      {weapon.type && weapon.link !== "" ? <iframe
           className={`${weapon.type}`}
           src={`https://www.youtube.com/embed/${weapon.link.split("/")[3]}`}
           frameborder="0"
           allow="fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           
-        ></iframe>}
+        ></iframe> : null}
     </div>
   );
 };
