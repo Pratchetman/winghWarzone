@@ -8,15 +8,17 @@ import "./oneWz2.scss";
 import { Footer } from "../../footer/Footer";
 import traductor from "../../../utils/traductor";
 import detailsTrad from "../../../utils/detTraductor";
+import { EditWeapon } from "../../upload/EditWeapon";
 
 
 export const OneWz2 = () => {
   const { logged } = useContext(WinghavenContext);
   const [weapon, setWeapon] = useState({});
+  const [show, setShow] = useState(false);
+  const [aux, setAux] = useState(false);
+ 
   const id = useParams().wz2_id;
 
-  console.log(id);
-  console.log(weapon);
   useEffect(() => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `wz2/${id}`))
@@ -30,7 +32,7 @@ export const OneWz2 = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [aux]);
 
   return (
     <div className="oneWz2Principal">
@@ -42,6 +44,9 @@ export const OneWz2 = () => {
           <img className="oneMeta" src="../images/logoMeta.png" alt="" />
         )}
       </div>
+      {logged && 
+      <div onClick={() => setShow(!show)}>Edit Weapon</div>
+      }
 
       <hr />
       <div className="config">
@@ -67,6 +72,7 @@ export const OneWz2 = () => {
           allow="fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           
         ></iframe> : null}
+        {show && <EditWeapon setShow={setShow} show={show} weapon={weapon} setAux={setAux} aux={aux}/>}
     </div>
   );
 };

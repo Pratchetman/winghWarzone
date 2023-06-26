@@ -88,14 +88,10 @@ export const Setup = () => {
             })}
         </div>
       </div>
-      {logged && <><Button
-        className="buttonModal"
-        variant="primary"
-        onClick={() => setShow(!show)}
-      >
-        Nuevo artículo
-      </Button>
-
+     
+      {logged && <><div className="addWp" onClick={() => setShow(!show)}>
+          <h1>+</h1>
+        </div>
       <UploadSetup
         show={show}
         setShow={setShow}

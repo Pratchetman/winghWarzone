@@ -105,14 +105,23 @@
       border: 1px solid rgb(255, 255, 255) !important;
     }
   }
-  .addWeapon {
-    border: 1px solid white;
-    background-color: purple;
-    margin-top: 30px;
+  .addWp{
+    width: 60px;
+    // background-color: rgb(80, 80, 80);
+    color: white;
+    margin: auto;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgb(99, 99, 99);
   }
-  .addWeapon:hover {
-    background-color: rgb(131, 80, 131);
+  .addWp:hover{
+    background-color: rgb(99, 99, 99);
+    cursor: pointer;
   }
+ 
   .cardsContainer {
     margin: auto;
     width: 100%;
@@ -130,7 +139,8 @@
       background-image: url("../../../../public/images/fondo-patron.webp");
       background-position: center;
       background-size: contain;
-
+      cursor: pointer;
+      box-shadow: 2px 2px 6px black;
       .titleWp {
         display: flex;
         justify-content: space-evenly;

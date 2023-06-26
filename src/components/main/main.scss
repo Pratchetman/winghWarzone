@@ -45,22 +45,22 @@
     }
   }
 }
-@media (min-width: 801px)  and (max-width: 1300px){
+@media (min-width: 601px)  and (max-width: 1300px){
   .principalMain {
    
     width: 80%;
   .flexJuegos{
-    gap:30px;
+    gap:20px;
     .marcoJuego{
-      width: 37vw;
-      min-width: 265px;
+      width: 34vw;
+      min-width: 235px;
       min-height: 45vw;
       height: 50vh;
     }
   }
   }
 }
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   .principalMain {
    
     width: 90%;

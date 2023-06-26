@@ -217,7 +217,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
             placeholder="Youtube"
           />
           <div className="labelFile">
-          <h6 >Imagen miniatura</h6>
+          <h6>Imagen miniatura</h6>
           <input
             className="inputFile"
             ref={inputFile}
@@ -228,7 +228,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
           </div>
          
           <div className="labelFile">
-          <h6 >Imagen detalle</h6>
+          <h6>Imagen detalle</h6>
            <input
             className="inputFile"
             ref={inputFile}

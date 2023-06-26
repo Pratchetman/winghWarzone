@@ -16,7 +16,7 @@ export const Wz2 = () => {
   const [search, setSearch] = useState("");
   const [aux, setAux] = useState(true);
   const searcher = useRef();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, `wz2/`))
@@ -135,11 +135,18 @@ export const Wz2 = () => {
           </section>
         </div>
         <p className="mostrando">Mostrando {FiltWeapons.length} resultados.</p>
+        {logged && <div className="addWp" onClick={() => setShow(!show)}>
+          <h1>+</h1>
+        </div>}
         <div className="cardsContainer">
           {FiltWeapons.length > 0 &&
             FiltWeapons.map((elem, index) => {
               return (
-                <div key={index} className={`weaponCard ${elem.type}`} onClick={()=>navigate(`/wz2/${elem.id}`)}>
+                <div
+                  key={index}
+                  className={`weaponCard ${elem.type}`}
+                  onClick={() => navigate(`/wz2/${elem.id}`)}
+                >
                   <div className="titleWp">
                     <p>{elem.nombre}</p>
                     <p>
@@ -160,11 +167,6 @@ export const Wz2 = () => {
               );
             })}
         </div>
-        {logged && (
-          <Button className="addWeapon" onClick={() => setShow(!show)}>
-            Añadir arma
-          </Button>
-        )}
       </div>
       <UploadWeapon setShow={setShow} show={show} aux={aux} setAux={setAux} />
     </>
