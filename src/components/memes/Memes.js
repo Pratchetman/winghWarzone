@@ -38,7 +38,7 @@ export const Memes = () => {
     });
 
     const storage = getStorage();
-    const fileName = img.substring(img.indexOf("%2F") + 3, img.indexOf("?"));
+    const fileName = img.substring(img.indexOf("%2F") + 3, img.indexOf("?")).replaceAll("%20", " ");
     // Create a reference to the file to delete
     console.log(fileName);
     const delRef = ref2(storage, "memes/" + fileName);

@@ -36,7 +36,7 @@ export const Setup = () => {
     });
 
     const storage = getStorage();
-    const fileName = img.substring(img.indexOf("/o/") + 2, img.indexOf("?"));
+    const fileName = img.substring(img.indexOf("/o/") + 2, img.indexOf("?")).replaceAll("%20", " ");
     // Create a reference to the file to delete
     const delRef = ref2(storage, fileName);
 

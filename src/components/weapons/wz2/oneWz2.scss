@@ -3,19 +3,41 @@
   width: 70%;
   margin: auto;
   padding-top: 60px;
-
+ 
   .title {
     display: flex;
     margin-top: 30px;
-    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+    .dFlex{
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      align-items: top;
+    }
     h2 {
       color: white;
       text-align: start;
+      margin: 0px;
     }
-    img {
+    .oneMeta {
       width: auto;
       height: 30px;
       filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.568));
+    }
+    .edit{
+      width: fit-content;
+      cursor: pointer;
+      text-align: end;
+      
+      >img{
+        width: 30px;
+      }
+      >img:hover{
+        filter: brightness(1.5);
+      }
     }
   }
 
@@ -139,7 +161,7 @@
     height: 50vw;
   }
 }
-@media (max-width: 430px) {
+@media (max-width: 530px) {
   .oneWz2Principal {
     width: 90%;
     .config {
@@ -148,6 +170,9 @@
         width: 95% !important;
         min-width: 240px !important;
       }
+    }
+    .title{
+      justify-content: center;
     }
   }
 }

@@ -7,6 +7,7 @@ import { UploadWeapon } from "../../upload/UploadWeapon";
 import { WinghavenContext } from "../../../context/WinghavenContext";
 import { useNavigate } from "react-router-dom";
 
+
 export const Wz2 = () => {
   const { logged } = useContext(WinghavenContext);
   const [wType, setWType] = useState("");
@@ -15,6 +16,8 @@ export const Wz2 = () => {
   const [FiltWeapons, setFiltWeapons] = useState([]);
   const [search, setSearch] = useState("");
   const [aux, setAux] = useState(true);
+  const [qty, setQty] = useState(10);
+  
   const searcher = useRef();
   const navigate = useNavigate();
   useEffect(() => {
@@ -33,7 +36,22 @@ export const Wz2 = () => {
       .catch((error) => {
         console.error(error);
       });
+
+    window.addEventListener("scroll", updatePosition);
+    return () => window.removeEventListener("scroll", updatePosition);
   }, [aux]);
+
+  const updatePosition = () => {
+    if (
+      window.scrollY + document.documentElement.clientHeight ===
+      document.documentElement.scrollHeight
+    ) {
+      setQty(qty + 10);
+      let boton = document.getElementById("boton");
+      boton.click();
+    }
+  };
+  console.log(qty);
 
   const handleWType = (e) => {
     if (wType === e) {
@@ -135,40 +153,50 @@ export const Wz2 = () => {
           </section>
         </div>
         <p className="mostrando">Mostrando {FiltWeapons.length} resultados.</p>
-        {logged && <div className="addWp" onClick={() => setShow(!show)}>
-          <h1>+</h1>
-        </div>}
+        {logged && (
+          <div className="addWp" onClick={() => setShow(!show)}>
+            <h1>+</h1>
+          </div>
+        )}
         <div className="cardsContainer">
           {FiltWeapons.length > 0 &&
             FiltWeapons.map((elem, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`weaponCard ${elem.type}`}
-                  onClick={() => navigate(`/wz2/${elem.id}`)}
-                >
-                  <div className="titleWp">
-                    <p>{elem.nombre}</p>
-                    <p>
-                      <span>Tipo de arma</span>&nbsp;&nbsp; {elem.type}
-                    </p>
+              if (index < qty) {
+                return (
+                  <div
+                    key={index}
+                    className={`weaponCard ${elem.type}`}
+                    onClick={() => navigate(`/wz2/${elem.id}`)}
+                  >
+                    <div className="titleWp">
+                      <p>{elem.nombre}</p>
+                      <p>
+                        <span>Tipo de arma</span>&nbsp;&nbsp; {elem.type}
+                      </p>
+                    </div>
+                    <div className="weapon">
+                      <img className="imgWp" src={elem.img} alt="" />
+                      {elem.meta === true && (
+                        <img
+                          className="logoMeta"
+                          src="./images/logoMeta.png"
+                          alt=""
+                        />
+                      )}
+                    </div>
                   </div>
-                  <div className="weapon">
-                    <img className="imgWp" src={elem.img} alt="" />
-                    {elem.meta === true && (
-                      <img
-                        className="logoMeta"
-                        src="./images/logoMeta.png"
-                        alt=""
-                      />
-                    )}
-                  </div>
-                </div>
-              );
+                );
+              }
             })}
         </div>
       </div>
-      <UploadWeapon setShow={setShow} show={show} aux={aux} setAux={setAux} />
+      <button id="boton" onClick={updatePosition}>
+        MAS
+      </button>
+      
+      {show && (
+        <UploadWeapon setShow={setShow} show={show} aux={aux} setAux={setAux} />
+      )}
     </>
   );
 };

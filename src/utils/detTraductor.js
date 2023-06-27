@@ -2,7 +2,7 @@
 const detailsTrad = (e)=>{
     let ret = "";
     if (e === "Bocacha" || e === "Cañón" || e === "Acople" || e === "Culata" || e === "Cerrojo"
-    || e === "Peine" ){
+    || e === "Peine" || e === "Sistema de gatillo" || e === "Guarda" || e === "Riel" ){
       ret = "Duración";
     } else if (e === "Mira"){
       ret = "Posición del ojo";

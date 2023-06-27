@@ -37,16 +37,22 @@ export const OneWz2 = () => {
   return (
     <div className="oneWz2Principal">
       <div className="title">
+        <div className="dFlex">
         <h2>
           {traductor(weapon.type)} - {weapon.nombre}{" "}
         </h2>
         {weapon.meta === true && (
           <img className="oneMeta" src="../images/logoMeta.png" alt="" />
         )}
+        </div>
+       
+           {logged && 
+      <div className="edit" onClick={() => setShow(!show)}>
+      <img className="imgEdit" src="../images/edit.png" alt="" />
       </div>
-      {logged && 
-      <div onClick={() => setShow(!show)}>Edit Weapon</div>
       }
+      </div>
+      
 
       <hr />
       <div className="config">

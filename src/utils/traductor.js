@@ -7,7 +7,7 @@ const traductor = (e) => {
       return "Rifle de asalto";
 
     case "BR":
-      return "Ametralladora ligera";
+      return "Fusil de combate";
 
     case "Pistola":
       return "Pistola";
@@ -16,7 +16,7 @@ const traductor = (e) => {
       return "Francotirador";
 
     case "LMG":
-      return "Ametralladora pesada";
+      return "Ametralladora ligera";
 
     case "TR":
       return "Fusil táctico";

@@ -124,3 +124,14 @@
 .delAcc:hover {
   cursor: pointer;
 }
+.footerEdit{
+  width: 95%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  >div{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}

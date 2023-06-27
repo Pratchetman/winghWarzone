@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, InputGroup, Modal } from "react-bootstrap";
-import { getDatabase, ref as ref2, set, get, child } from "firebase/database";
+import { Button, ButtonGroup, InputGroup, Modal } from "react-bootstrap";
+import { getDatabase, ref as ref2, set, get, child, remove } from "firebase/database";
 import {
   getStorage,
   ref,
@@ -10,6 +10,7 @@ import {
 } from "firebase/storage";
 import { app } from "../../utils/fireBaseConf";
 import detailsTrad from "../../utils/detTraductor";
+import { useNavigate } from "react-router-dom";
 
 const storage = getStorage();
 
@@ -32,6 +33,9 @@ const initialAccList = [
   "Empuñadura trasera",
   "Peine",
   "Cerrojo",
+  "Sistema de gatillo",
+  "Guarda",
+  "Riel"
 ];
 
 export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
@@ -51,6 +55,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
   const [optionList, setOptionList] = useState(weapon.opt);
   const [error, setError] = useState("");
   const inputFile = React.useRef();
+  const navigate = useNavigate();
 
   const handleClose = () => {
     setShow(false);
@@ -58,6 +63,39 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
     setError("");
     setAccList(initialAccList);
   };
+
+  const handleDelete = () => {
+    const db = getDatabase();
+    remove(ref2(db, "wz2/" + editWeapon.id)).then(() => {
+      console.log("entrada eliminada correctamente");
+    });
+
+    const storage = getStorage();
+    const fileName1 = weapon.img.substring(weapon.img.indexOf("%2F") + 3, weapon.img.indexOf("?")).replaceAll("%20", " ");
+    const fileName2 = weapon.imgBg.substring(weapon.imgBg.indexOf("Bg%2F") + 5,
+    weapon.imgBg.indexOf("?")).replaceAll("%20", " ");
+    // Create a reference to the file to delete
+    console.log(fileName1);
+    const delRef1 = ref(storage, "wz2/" + fileName1);
+    const delRef2 = ref(storage, "wz2/imgBg" + fileName2);
+    // Delete the file
+    deleteObject(delRef1)
+      .then(() => {
+        console.log("Archivo1 borrado correctamente");
+        deleteObject(delRef2)
+        .then(() => {
+          console.log("Archivo2 borrado correctamente");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      navigate("/wz2");
+      setAux(!aux);
+  }
 
   const handleFileBg = (e) => {
     const imgBg = e.target.files[0];
@@ -128,52 +166,50 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
       }
     }
     const storage = getStorage();
-    const fileName = weapon.imgBg
-      .substring(weapon.imgBg.indexOf("Bg%2F") + 5, weapon.imgBg.indexOf("?"))
-      .replaceAll("%20", " ");
+
     if (ok === true) {
       if (editWeapon.imgBg !== null) {
+        const fileName = weapon.imgBg
+          .substring(
+            weapon.imgBg.indexOf("Bg%2F") + 5,
+            weapon.imgBg.indexOf("?")
+          )
+          .replaceAll("%20", " ");
         console.log("entrando a borrar");
         console.log(fileName);
         const delRef = ref(storage, "wz2/imgBg/" + fileName);
         try {
           deleteObject(delRef)
-          .then(() => {
-            console.log("Archivo borrado correctamente");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+            .then(() => {
+              console.log("Archivo borrado correctamente");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         } finally {
           const fileNameBg =
-          Date.parse(new Date()) / 1000 +
-          "-" +
-          editWeapon.imgBg.name.split(".")[0] +
-          "." +
-          editWeapon.imgBg.name.split(".")[1];
-        const storageRefBg = ref(storage, "wz2/imgBg/" + fileNameBg);
-        uploadBytes(storageRefBg, editWeapon.imgBg).then((snapshot) => {
-          console.log("nueva imagen subida correctamente");
-          getDownloadURL(ref(storage, "wz2/imgBg/" + fileNameBg)).then(
-            (url) => {
-              let dbs = getDatabase();
-              set(ref2(dbs, "wz2/" + editWeapon.id), {
-                ...editWeapon,
-                imgBg: url,
-              });
-              inputFile.current.value = "";
-              setShow(!show);
-              setAux(!aux);
-            }
-          );
-        });
+            Date.parse(new Date()) / 1000 + "-" + editWeapon.imgBg.name;
+          const storageRefBg = ref(storage, "wz2/imgBg/" + fileNameBg);
+          uploadBytes(storageRefBg, editWeapon.imgBg).then((snapshot) => {
+            console.log("nueva imagen subida correctamente");
+            getDownloadURL(ref(storage, "wz2/imgBg/" + fileNameBg)).then(
+              (url) => {
+                let dbs = getDatabase();
+                set(ref2(dbs, "wz2/" + editWeapon.id), {
+                  ...editWeapon,
+                  imgBg: url,
+                });
+                inputFile.current.value = "";
+                setShow(!show);
+                setAux(!aux);
+              }
+            );
+          });
         }
-       
- 
       } else if (editWeapon.imgBg === null) {
         let dbs = getDatabase();
         set(ref2(dbs, "wz2/" + editWeapon.id), {
-          ...editWeapon,
+          ...editWeapon, 
           imgBg: weapon.imgBg,
         });
         setShow(!show);
@@ -245,16 +281,24 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
 
             <div className="dflex">
               <label htmlFor="meta">Meta</label>
-              <input
-                type="checkbox"
-                id="meta"
-                onChange={handleCheck}
-                value={editWeapon.meta}
-                checked={`${
-                  editWeapon && editWeapon.meta === true ? "true" : "false"
-                }`}
-                name="meta"
-              />
+              {editWeapon.meta === true ? (
+                <input
+                  type="checkbox"
+                  id="meta"
+                  onChange={handleCheck}
+                  value={editWeapon.meta}
+                  checked
+                  name="meta"
+                />
+              ) : (
+                <input
+                  type="checkbox"
+                  id="meta"
+                  onChange={handleCheck}
+                  value={editWeapon.meta}
+                  name="meta"
+                />
+              )}
             </div>
 
             {optionList &&
@@ -332,18 +376,24 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
           <p className="error">{error}</p>
         </Modal.Body>
       )}
-      <Modal.Footer>
-        <Button variant="secondary">Eliminar arma</Button>
-        <Button variant="secondary" onClick={handleClose}>
-          Cerrar
+      <Modal.Footer className="footerEdit">
+        <Button variant="secondary" onClick={handleDelete}>Eliminar arma</Button>
+       
+       <div>
+
+      
+       <Button variant="secondary" onClick={handleClose}>
+          Cancelar
         </Button>
         <Button
           onClick={handleSubmit}
           className="buttonModal2"
           variant="primary"
         >
-          Crear arma
+          Actualizar
         </Button>
+        </div>
+        
       </Modal.Footer>
     </Modal>
   );

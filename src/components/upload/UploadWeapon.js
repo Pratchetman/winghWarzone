@@ -14,7 +14,7 @@ const optDefault = {
   opt2: "",
 };
 
-const weaponDefault = {
+let weaponDefault = {
   id:  Date.parse(new Date()) / 1000,
   nombre: "",
   type: "",
@@ -36,7 +36,10 @@ const initialAccList = [
   "Cargador",
   "Empuñadura trasera",
   "Peine", 
-  "Cerrojo"
+  "Cerrojo",
+  "Sistema de gatillo",
+  "Guarda",
+  "Riel"
 ];
 
 export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
@@ -150,9 +153,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
       uploadBytes(storageRef, weapon.img).then((snapshot) => {
         setError("");
         getDownloadURL(ref(storage, fileName)).then((url) => {
-          let dbs = getDatabase();
           url1 = url.toString();
-          
         });
       });
       uploadBytes(storageRefBg, weapon.imgBg).then((snapshot) =>{
@@ -171,7 +172,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
     }else{
       setError("Comprueba todos los datos")
     }
-
+    weaponDefault.id = Date.parse(new Date()) / 1000;
   };
 
   return (
@@ -200,10 +201,10 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
           >"
             <option defaultValue="">Elige tipo de arma</option>
             <option value="AR">Rifle de asalto</option>
-            <option value="BR">Ametralladora ligera</option>
+            <option value="BR">Fusil de combate</option>
             <option value="SMG">Subfusil</option>
             <option value="SG">Escopeta</option>
-            <option value="LMG">Ametralladora pesada</option>
+            <option value="LMG">Ametralladora ligera</option>
             <option value="TR">Fusil táctico</option>
             <option value="SR">Francotirador</option>
             <option value="Pistola">Pistola</option>

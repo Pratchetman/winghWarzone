@@ -32,7 +32,7 @@ export const UploadMeme = ({ meme, setMeme, show, setShow }) => {
   };
 
   const handleSubmit = () => {
-    if (file.name.includes("jpg") || file.name.includes("png")) {
+    if (file.name.includes("jpg") || file.name.includes("png") || file.name.includes("webp")) {
       const fileName =
         file.name.split(".")[0] +
         "-" +
