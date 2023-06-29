@@ -25,8 +25,8 @@ const checkAcc = (e) =>{
 const optDefault = {
   name: "",
   desc: "",
-  opt1: "",
-  opt2: "",
+  // opt1: "",
+  // opt2: "",
 };
 
 const initialAccList = [
@@ -39,14 +39,13 @@ const initialAccList = [
   "Munición",
   "Cargador",
   "Empuñadura trasera",
-  "Peine",
   "Cerrojo",
   "Sistema de gatillo",
-  "Guarda",
-  "Riel"
+  "Ventaja 1",
+  "Ventaja 2"
 ];
 
-export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
+export const EditWeaponWz1 = ({ show, setShow, weapon, setAux, aux }) => {
   const [editWeapon, setEditWeapon] = useState({ ...weapon, imgBg: null });
   const [accList, setAccList] = useState(
     initialAccList.filter((elem) => {
@@ -75,18 +74,18 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
 
   const handleDelete = () => {
     const db = getDatabase();
-    remove(ref2(db, "wz2/" + editWeapon.id)).then(() => {
+    remove(ref2(db, "wz1/" + editWeapon.id)).then(() => {
       console.log("entrada eliminada correctamente");
     });
 
     const storage = getStorage();
-    const fileName1 = weapon.img.substring(weapon.img.indexOf("/o/") + 3, weapon.img.indexOf("?")).replaceAll("%20", " ");
+    const fileName1 = weapon.img.substring(weapon.img.indexOf("%2F") + 3, weapon.img.indexOf("?")).replaceAll("%20", " ");
     const fileName2 = weapon.imgBg.substring(weapon.imgBg.indexOf("Bg%2F") + 5,
     weapon.imgBg.indexOf("?")).replaceAll("%20", " ");
     // Create a reference to the file to delete
     console.log(fileName1);
-    const delRef1 = ref(storage, fileName1);
-    const delRef2 = ref(storage, "wz2/imgBg/" + fileName2);
+    const delRef1 = ref(storage, "wz1/" + fileName1);
+    const delRef2 = ref(storage, "wz1/imgBg/" + fileName2);
     // Delete the file
     deleteObject(delRef1)
       .then(() => {
@@ -102,7 +101,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
       .catch((error) => {
         console.log(error);
       });
-      navigate("/wz2");
+      navigate("/wz1");
       setAux(!aux);
   }
 
@@ -166,7 +165,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
   const handleSubmit = () => {
     let ok = true;
     for (const [key, value] of Object.entries(editWeapon)) {
-      if (value === "" && key != "link") {
+      if (value === "" && key != "link" && key !== "img") {
         ok = false;
       }
     }
@@ -182,7 +181,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
           .replaceAll("%20", " ");
         console.log("entrando a borrar");
         console.log(fileName);
-        const delRef = ref(storage, "wz2/imgBg/" + fileName);
+        const delRef = ref(storage, "wz1/imgBg/" + fileName);
         try {
           deleteObject(delRef)
             .then(() => {
@@ -194,13 +193,13 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
         } finally {
           const fileNameBg =
             Date.parse(new Date()) / 1000 + "-" + editWeapon.imgBg.name;
-          const storageRefBg = ref(storage, "wz2/imgBg/" + fileNameBg);
+          const storageRefBg = ref(storage, "wz1/imgBg/" + fileNameBg);
           uploadBytes(storageRefBg, editWeapon.imgBg).then((snapshot) => {
             console.log("nueva imagen subida correctamente");
-            getDownloadURL(ref(storage, "wz2/imgBg/" + fileNameBg)).then(
+            getDownloadURL(ref(storage, "wz1/imgBg/" + fileNameBg)).then(
               (url) => {
                 let dbs = getDatabase();
-                set(ref2(dbs, "wz2/" + editWeapon.id), {
+                set(ref2(dbs, "wz1/" + editWeapon.id), {
                   ...editWeapon,
                   imgBg: url,
                 });
@@ -213,7 +212,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
         }
       } else if (editWeapon.imgBg === null) {
         let dbs = getDatabase();
-        set(ref2(dbs, "wz2/" + editWeapon.id), {
+        set(ref2(dbs, "wz1/" + editWeapon.id), {
           ...editWeapon, 
           imgBg: weapon.imgBg,
         });
@@ -314,12 +313,12 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
                       <p>
                         <span>{elem.name}:</span> "{elem.desc}"
                       </p>
-                      {elem.name !== "Cargador" && (
+                      {/* {elem.name !== "Cargador" && (
                         <p className="opt1Opt2">
                           <span>Peso:</span> {elem.opt1 ? elem.opt1 : "0.00"} /{" "}
                           <span>Opt2:</span> {elem.opt2 ? elem.opt2 : "0.00"}
                         </p>
-                      )}
+                      )} */}
                     </div>
                     <p className="delAcc" onClick={() => handleDelAcc(index)}>
                       X
@@ -327,7 +326,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
                   </div>
                 );
               })}
-            {optionList && optionList.length < 5 && (
+            {optionList && optionList.length < 10 && (
               <>
                 <h5 className="addAcc">Añade los accesorios</h5>
                 <select
@@ -347,7 +346,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
                   name="desc"
                   placeholder="Descripción"
                 />
-                {option.name !== "Cargador" && option.name !== "" && (
+                {/* {option.name !== "Cargador" && option.name !== "" && (
                   <div className="inputsOpt">
                     <input
                       onChange={handleChangeOpt}
@@ -370,7 +369,7 @@ export const EditWeapon = ({ show, setShow, weapon, setAux, aux }) => {
                       name="opt2"
                     />
                   </div>
-                )}
+                )} */}
                 <Button className="buttonAddAcc" onClick={handleOptionList}>
                   Añadir accesorio
                 </Button>

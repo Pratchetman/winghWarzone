@@ -28,11 +28,22 @@ export const UploadMeme = ({ meme, setMeme, show, setShow }) => {
   };
 
   const handleFile = (e) => {
-    setFile(e.target.files[0]);
+    const img = e.target.files[0];
+    if (
+      img.type == "image/jpeg" ||
+      img.type == "image/png" ||
+      img.type == "image/webp"
+    ) {
+      setFile(img);
+      setError("");
+    } else {
+      inputFile.current.value = "";
+      setError("Archivo no compatible");
+    }
   };
 
   const handleSubmit = () => {
-    if (file.name.includes("jpg") || file.name.includes("png") || file.name.includes("webp")) {
+    if (file) {
       const fileName =
         file.name.split(".")[0] +
         "-" +
@@ -44,7 +55,7 @@ export const UploadMeme = ({ meme, setMeme, show, setShow }) => {
       uploadBytes(storageRef, file).then((snapshot) => {
         setError("");
         getDownloadURL(ref(storage, "memes/" + fileName)).then((url) => {
-            console.log(url);
+          console.log(url);
           let ident = Date.parse(new Date()) / 1000;
           let dbs = getDatabase();
           set(ref2(dbs, "memes/" + ident), {
@@ -53,12 +64,12 @@ export const UploadMeme = ({ meme, setMeme, show, setShow }) => {
             img: url.toString(),
           });
           setMeme([
-            
             {
               id: ident,
               text: newMeme.text,
               img: url.toString(),
-            }, ...meme
+            },
+            ...meme,
           ]);
           setNewMeme(memeDefault);
           inputFile.current.value = "";
@@ -66,49 +77,51 @@ export const UploadMeme = ({ meme, setMeme, show, setShow }) => {
         });
       });
     } else {
-      setError("Archivo no compatible");
+      setError("Es necesario elegir un archivo");
     }
   };
 
   return (
     <Modal show={show} onHide={handleClose}>
-        <Modal.Header className="headerModal">
-          <img className="logoModal" src="images/logoSM.png" alt="" />
-          <Modal.Title>Añadir nuevo meme</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal.Header className="headerModal">
+        <img className="logoModal" src="images/logoSM.png" alt="" />
+        <Modal.Title>Añadir nuevo meme</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
         <section>
-     
-      <div className="inputsNewArticle">
-        <input
-          type="text"
-          onChange={handleChange}
-          value={newMeme.text}
-          name="text"
-          placeholder="Texto"
-        />
+          <div className="inputsNewArticle">
+            <input
+              type="text"
+              onChange={handleChange}
+              value={newMeme.text}
+              name="text"
+              placeholder="Texto"
+            />
 
-        <input className="inputFile"
-          type="file" ref={inputFile}
-          onChange={handleFile}
-          placeholder="Seleccionar imagen"
-          
-        />
-      </div>
-      
-      <p className="error">{error}</p>
-    </section>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cerrar
-          </Button>
-          <Button className="buttonModal2" variant="primary" onClick={handleSubmit}>
-            Añadir
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            <input
+              className="inputFile"
+              type="file"
+              ref={inputFile}
+              onChange={handleFile}
+              placeholder="Seleccionar imagen"
+            />
+          </div>
 
-
+          <p className="error">{error}</p>
+        </section>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Cerrar
+        </Button>
+        <Button
+          className="buttonModal2"
+          variant="primary"
+          onClick={handleSubmit}
+        >
+          Añadir
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 };

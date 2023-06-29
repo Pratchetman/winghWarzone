@@ -10,8 +10,8 @@ const storage = getStorage();
 const optDefault = {
   name: "",
   desc: "",
-  opt1: "",
-  opt2: "",
+  //   opt1: "",
+  //   opt2: "",
 };
 
 let weaponDefault = {
@@ -35,14 +35,13 @@ const initialAccList = [
   "Munición",
   "Cargador",
   "Empuñadura trasera",
-  "Peine",
   "Cerrojo",
   "Sistema de gatillo",
-  "Guarda",
-  "Riel",
+  "Ventaja 1",
+  "Ventaja 2",
 ];
 
-export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
+export const UploadWeaponWz1 = ({ show, setShow, aux, setAux }) => {
   const [weapon, setWeapon] = useState(weaponDefault);
   const [accList, setAccList] = useState(initialAccList);
   const [option, setOption] = useState(optDefault);
@@ -153,38 +152,48 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
         Date.parse(new Date()) / 1000 +
         "." +
         weapon.img.name.split(".")[1];
-      const storageRef = ref(storage, fileName);
+      const storageRef = ref(storage, "wz1/" + fileName);
       const fileNameBg =
         Date.parse(new Date()) / 1000 +
         "-" +
         weapon.imgBg.name.split(".")[0] +
         "." +
         weapon.img.name.split(".")[1];
-      const storageRefBg = ref(storage, "wz2/imgBg/" + fileNameBg);
+      const storageRefBg = ref(storage, "wz1/imgBg/" + fileNameBg);
       console.log(storageRef);
       let url1 = "";
       let url2 = "";
       uploadBytes(storageRef, weapon.img).then((snapshot) => {
-        console.log("subida imagen 1");
+        console.log("imagen 1 subida correctamente");
         setError("");
-        getDownloadURL(ref(storage, fileName)).then((urlWz2) => {
-          url1 = urlWz2.toString();
+        getDownloadURL(ref(storage, "wz1/" + fileName)).then((urlWz1) => {
+          url1 = urlWz1.toString();
+          console.log(url1, "link para db");
         });
-        uploadBytes(storageRefBg, weapon.imgBg).then((snapshot) =>{
-          console.log("subida imagen 2")
-          getDownloadURL(ref(storage, "wz2/imgBg/" + fileNameBg)).then((url) => {
-            let dbs = getDatabase();
-            url2 = url.toString();
-            set(ref2(dbs, "wz2/" + weapon.id), {...weapon, img: url1, imgBg: url2});
-            setWeapon({...weaponDefault, id: Date.parse(new Date()) / 1000});
-            inputFile1.current.value = "";
-            inputFile2.current.value = "";
-            setAux(!aux);
-            setShow(!show);
-            setOptionList([]);
-            
-          })
-        })
+        uploadBytes(storageRefBg, weapon.imgBg).then((snapshot) => {
+          console.log("imagen 2 subida correctamente");
+          getDownloadURL(ref(storage, "wz1/imgBg/" + fileNameBg)).then(
+            (url) => {
+              let dbs = getDatabase();
+              url2 = url.toString();
+              console.log(url2, "link para db");
+              set(ref2(dbs, "wz1/" + weapon.id), {
+                ...weapon,
+                img: url1,
+                imgBg: url2,
+              });
+              setWeapon({
+                ...weaponDefault,
+                id: Date.parse(new Date()) / 1000,
+              });
+              inputFile1.current.value = "";
+              inputFile2.current.value = "";
+              setAux(!aux);
+              setShow(!show);
+              setOptionList([]);
+            }
+          );
+        });
       });
     } else {
       setError("Comprueba todos los datos");
@@ -274,13 +283,12 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
                   <p>
                     <span>{elem.name}:</span> "{elem.desc}"
                   </p>
-                  {elem.name !== "Cargador" && (
+                  {/* {elem.name !== "Cargador" && (
                     <p className="opt1Opt2">
                       <span>Peso:</span> {elem.opt1 ? elem.opt1 : "0.00"} /{" "}
-                      <span>{detailsTrad(elem.name)}</span>{" "}
-                      {elem.opt2 ? elem.opt2 : "0.00"}
+                      <span>{detailsTrad(elem.name)}</span> {elem.opt2 ? elem.opt2 : "0.00"}
                     </p>
-                  )}
+                  )} */}
                 </div>
                 <p className="delAcc" onClick={() => handleDelAcc(index)}>
                   X
@@ -288,7 +296,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
               </div>
             );
           })}
-          {optionList.length < 5 && (
+          {optionList.length < 10 && (
             <>
               <h5 className="addAcc">Añade los accesorios</h5>
               <select
@@ -308,7 +316,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
                 name="desc"
                 placeholder="Descripción"
               />
-              {option.name !== "Cargador" && option.name !== "" && (
+              {/* {option.name !== "Cargador" && option.name !== "" && (
                 <div className="inputsOpt">
                   <input
                     onChange={handleChangeOpt}
@@ -331,7 +339,7 @@ export const UploadWeapon = ({ show, setShow, aux, setAux }) => {
                     name="opt2"
                   />
                 </div>
-              )}
+              )} */}
               <Button className="buttonAddAcc" onClick={handleOptionList}>
                 Añadir accesorio
               </Button>

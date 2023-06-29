@@ -4,24 +4,24 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { WinghavenContext } from "../../../context/WinghavenContext";
 
-import "./oneWz2.scss";
+import "./oneWz1.scss";
 import traductor from "../../../utils/traductor";
 import detailsTrad from "../../../utils/detTraductor";
-import { EditWeapon } from "../../upload/EditWeapon";
 import handleNums from "../../../utils/handleNums";
+import { EditWeaponWz1 } from "../../upload/EditWeaponWz1";
 
 
-export const OneWz2 = () => {
+export const OneWz1 = () => {
   const { logged } = useContext(WinghavenContext);
   const [weapon, setWeapon] = useState({});
   const [show, setShow] = useState(false);
   const [aux, setAux] = useState(false);
  
-  const id = useParams().wz2_id;
+  const id = useParams().wz1_id;
 
   useEffect(() => {
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `wz2/${id}`))
+    get(child(dbRef, `wz1/${id}`))
       .then((snapshot) => {
         if (snapshot.exists()) {
           setWeapon(snapshot.val());
@@ -78,7 +78,7 @@ export const OneWz2 = () => {
           allow="fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           
         ></iframe> : null}
-        {show && <EditWeapon setShow={setShow} show={show} weapon={weapon} setAux={setAux} aux={aux}/>}
+        {show && <EditWeaponWz1 setShow={setShow} show={show} weapon={weapon} setAux={setAux} aux={aux}/>}
     </div>
   );
 };

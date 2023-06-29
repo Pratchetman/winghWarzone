@@ -1,0 +1,236 @@
+.principalWz1 {
+    min-height: calc(100vh - 56px - 61px);
+    width: 70%;
+    margin: auto;
+    padding-top: 60px;
+    h2 {
+      color: white;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+    .mostrando {
+      color: gray;
+      text-align: start;
+      padding-left: 7%;
+      margin: 10px 0px 0px 0px;
+    }
+    .dflex {
+      display: flex;
+      align-items: center;
+      h6 {
+        text-align: start;
+        color: gray;
+        margin: 0px;
+      }
+      img {
+        width: 20px;
+        margin-right: 5px;
+      }
+      input {
+        background-color: rgba(0, 0, 0, 0);
+        border: 1px solid gray;
+        border-radius: 7px;
+        color: gray;
+        padding: 0 8px;
+      }
+      input::placeholder {
+        text-align: start;
+      }
+    }
+    .jcBetween {
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      width: 90%;
+      margin: auto;
+      margin-bottom: 20px;
+    }
+  
+    > hr {
+      width: 30%;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgb(19, 19, 19);
+    }
+    .metaBtn{
+      Button {
+        margin-top: 14px;
+        width: 100px;
+        padding: 2px;
+        height: 30px;
+        background-image: url("../../../../public/images/greenPattern.jpg");
+        border: 1px solid rgb(255, 255, 255) !important;
+      }
+      Button:hover {
+        box-shadow: 0px 0px 9px rgb(170, 214, 170);
+        
+      }
+    }
+    #selected {
+      background-color: green !important;
+      border: 1px solid rgb(255, 255, 255) !important;
+      background-image: none;
+    }
+    .contentNavs {
+      margin: auto;
+      display: flex;
+      width: 90%;
+  
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      .weaponsNav1 {
+        width: 45%;
+        min-width: 290px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        Button {
+          width: 100px;
+          padding: 2px;
+          height: 30px;
+          background-color: purple;
+          border: 1px solid rgb(255, 255, 255) !important;
+        }
+        Button:hover {
+          border: 1px solid rgb(255, 255, 255) !important;
+          background-color: rgb(131, 80, 131);
+        }
+      }
+      .weaponsNav2 {
+        width: 50%;
+        display: flex;
+        width: 45%;
+        min-width: 290px;
+        justify-content: flex-start;
+        gap: 10px;
+        Button {
+          width: 100px;
+          height: 30px;
+          padding: 2px;
+          border: 1px solid rgb(255, 255, 255) !important;
+          background-color: purple;
+        }
+        Button:hover {
+          border: 1px solid rgb(255, 255, 255) !important;
+          background-color: rgb(131, 80, 131);
+        }
+      }
+    }
+    .addWp{
+      width: 60px;
+      // background-color: rgb(80, 80, 80);
+      color: white;
+      margin: auto;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 50%;
+      border: 1px solid rgb(99, 99, 99);
+    }
+    .addWp:hover{
+      background-color: rgb(99, 99, 99);
+      cursor: pointer;
+    }
+   
+    .cardsContainer {
+      margin: auto;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      .weaponCard {
+        width: 45%;
+        min-width: 270px;
+        color: white;
+        overflow: hidden;
+        margin-top: 30px;
+        border-radius: 5px;
+        overflow: hidden;
+        background-image: url("../../../../public/images/fondo-patron.webp");
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+        box-shadow: 2px 2px 6px black;
+        .titleWp {
+          display: flex;
+          justify-content: space-evenly;
+          border-bottom: 1px solid gray;
+          p {
+            margin: 7px;
+            font-weight: bold;
+          }
+        }
+        .weapon {
+          background-color: rgba(0, 0, 0, 0.596);
+          width: 100%;
+          height: 100%;
+          padding: 20px 10px;
+          position: relative;
+          .imgWp {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            object-position: center;
+            filter: drop-shadow(1px 2px 50px purple);
+          }
+          .logoMeta {
+            width: 10%;
+            position: absolute;
+            left: 13px;
+            top: 13px;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.568));
+          }
+        }
+      }
+      .SMG {
+        border: 2px solid white;
+      }
+      .BR {
+        border: 2px solid rgb(226, 75, 75);
+      }
+      .AR {
+        border: 2px solid green;
+      }
+      .Pistola {
+        border: 2px solid rgb(56, 68, 230);
+      }
+      .TR {
+        border: 2px solid rgb(231, 218, 32);
+      }
+      .LMG {
+        border: 2px solid purple;
+      }
+      .SR {
+        border: 2px solid rgb(83, 83, 83);
+      }
+      .SG {
+        border: 2px solid rgb(112, 0, 0);
+      }
+    }
+  
+  }
+    #boton{
+      display: none;
+    }
+  @media (min-width: 431px) and (max-width:900px){
+    .principalWz2{
+      width: 90%;
+    }
+  }
+  @media (max-width: 430px){
+    .principalWz2 {
+      
+      width: 90%;
+      .cardsContainer{
+        .weaponCard{
+          width: 90%;
+        }
+      }
+    } 
+  }
+  

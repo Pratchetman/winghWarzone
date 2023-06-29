@@ -14,6 +14,7 @@ import { Wz1 } from '../components/weapons/wz1/Wz1.js';
 import { Wz2 } from '../components/weapons/wz2/Wz2.js';
 import { Footer } from '../components/footer/Footer';
 import { OneWz2 } from '../components/weapons/wz2/OneWz2';
+import { OneWz1 } from '../components/weapons/wz1/OneWz1';
 
 export const WinghavenApp = () => {
   return (
@@ -30,7 +31,7 @@ export const WinghavenApp = () => {
         <Route path="/wz1" element={<Wz1 />} />
         <Route path="/wz2" element={<Wz2 />} />
         <Route path="/wz2/:wz2_id" element={<OneWz2 />} />
-        <Route path="/wz1/:wz1_id" element={<OneWz2 />} />
+        <Route path="/wz1/:wz1_id" element={<OneWz1 />} />
         </Routes>
         <Footer />
         </BrowserRouter>

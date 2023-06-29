@@ -93,12 +93,12 @@ export const Memes = () => {
           >
             Nuevo meme
           </Button>
-          <UploadMeme
+          {show && <UploadMeme
             setMeme={setMeme}
             meme={meme}
             show={show}
             setShow={setShow}
-          />
+          />}
         </>
       )}
     </>

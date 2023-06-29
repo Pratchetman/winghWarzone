@@ -57,13 +57,22 @@ export const Wz2 = () => {
     if (wType === e) {
       setWType("");
       setFiltWeapons(weapons);
+      setQty(10)
       setSearch("");
       searcher.current.value = "";
     } else {
       setWType(e);
-      setFiltWeapons(weapons.filter((elem) => elem.type === e));
-      setSearch("");
-      searcher.current.value = "";
+      if (e === "Meta") {
+        setFiltWeapons(weapons.filter((elem) => elem.meta === true));
+        setQty(10)
+        setSearch("");
+        searcher.current.value = "";
+      } else {
+        setFiltWeapons(weapons.filter((elem) => elem.type === e));
+        setQty(10)
+        setSearch("");
+        searcher.current.value = "";
+      }
     }
   };
 
@@ -151,6 +160,14 @@ export const Wz2 = () => {
               Pistola
             </Button>
           </section>
+        </div>
+        <div className="metaBtn">
+          <Button
+            onClick={() => handleWType("Meta")}
+            id={`${wType === "Meta" && "selected"}`}
+          >
+            META
+          </Button>
         </div>
         <p className="mostrando">Mostrando {FiltWeapons.length} resultados.</p>
         {logged && (
