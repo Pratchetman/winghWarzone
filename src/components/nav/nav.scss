@@ -11,6 +11,7 @@
     display: flex;
     gap:10px;
     align-items: center;
+    cursor: pointer;
     Button{
         padding: 4px !important;
         height: fit-content;
@@ -21,7 +22,27 @@
       margin: 0px;
     }
   }
+  
+
 
 
   
+}
+@media (max-width: 991px) {
+  nav{
+    width: 100vw;
+  }
+  .toggleBg{
+    display: none !important;
+  }
+  .session{
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+ 
+  .toggleMenu{
+    display: none !important;
+  }
 }

@@ -18,15 +18,23 @@ export const Login = ({ show, setShow }) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
+    setError("");
     setShow(false);
     setLogin(loginDefault);
   };
-  const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
+    
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
+
+  const handleOnKeyDown = (e) =>{
+    if (e.key === "Enter"){
+      handleSubmit();
+    }
+  }
+
   const handleSubmit = () => {
     const auth = getAuth();
     console.log("empiezo el submit");
@@ -41,6 +49,7 @@ export const Login = ({ show, setShow }) => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setError("Error en los datos introducidos");
       });
   };
 
@@ -65,6 +74,7 @@ export const Login = ({ show, setShow }) => {
               <input
                 type="password"
                 onChange={handleChange}
+                onKeyDown={handleOnKeyDown}
                 value={login.password}
                 name="password"
                 placeholder="Contraseña"
@@ -86,13 +96,15 @@ export const Login = ({ show, setShow }) => {
         <Button variant="secondary" onClick={handleClose}>
           Cerrar
         </Button>
-        {!logged && <Button
-          className="buttonModal2"
-          variant="primary"
-          onClick={handleSubmit}
-        >
-          Iniciar sesión
-        </Button>}
+        {!logged && (
+          <Button
+            className="buttonModal2"
+            variant="primary"
+            onClick={handleSubmit}
+          >
+            Iniciar sesión
+          </Button>
+        )}
       </Modal.Footer>
     </Modal>
   );

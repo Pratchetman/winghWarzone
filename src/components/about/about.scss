@@ -2,6 +2,7 @@
     min-height: calc(100vh - 56px);
     color: white;
     width: 70%;
+    // max-width: 1100px;
     padding-top: 60px;
     margin: auto;
     section{
@@ -77,7 +78,7 @@
         gap: 20px;
         >div{
             width: 25vw;
-            min-width: 300px;
+            min-width: 260px;
             margin: auto;
             p{
                 color: rgb(185, 185, 185);
@@ -91,7 +92,7 @@
             box-shadow: 2px 2px 6px black;
             width: 37vw;
             height: 30vw;
-            min-width: 300px;
+            min-width: 260px;
             // height: 75%;
             min-height: 250px;
             margin: auto;
@@ -122,6 +123,9 @@
         flex-wrap: nowrap;
         flex-direction: column-reverse;
        
+    }
+    iframe{
+        width: 100% !important;
     }
 }
 }

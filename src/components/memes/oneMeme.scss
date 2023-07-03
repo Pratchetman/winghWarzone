@@ -1,0 +1,38 @@
+.modal-lg {
+//   display: inline-block !important;
+  margin: auto;
+  .modal-content {
+    max-height: calc(100vh - 50px);
+    min-height: 800px;
+    // height: fit-content !important;
+    width: fit-content;
+    margin: auto;
+    .modal-body {
+        height: 100% !important;
+        width: 100% !important;
+        max-height: calc(100vh - 50px);
+      .oneMemeImg {
+        width: 100%;
+        height: 700px;
+        object-fit: contain;
+        object-position: center;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+.modal-lg{
+    margin-top: 60px;
+    .modal-content{
+        min-height: 500px;
+        .modal-body{
+            height: 100%;
+            margin-top: 30px;
+            .oneMemeImg{
+                height: 400px;
+            }
+        }
+    }
+}
+}
+    

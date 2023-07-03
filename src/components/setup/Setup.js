@@ -65,6 +65,16 @@ export const Setup = () => {
             alt=""
           />
         </div>
+        {logged && <><div className="addWp" onClick={() => setShow(!show)}>
+          <img src="./images/plus.png" alt="" />
+        </div>
+      <UploadSetup
+        show={show}
+        setShow={setShow}
+        setSetup={setSetup}
+        setup={setup}
+      />
+      </>}
         <div className="imagenesSetup">
           {setup &&
             setup.map((elem, index) => {
@@ -89,16 +99,7 @@ export const Setup = () => {
         </div>
       </div>
      
-      {logged && <><div className="addWp" onClick={() => setShow(!show)}>
-          <h1>+</h1>
-        </div>
-      <UploadSetup
-        show={show}
-        setShow={setShow}
-        setSetup={setSetup}
-        setup={setup}
-      />
-      </>}
+  
     </>
   );
 };

@@ -7,7 +7,6 @@ import { UploadWeapon } from "../../upload/UploadWeapon";
 import { WinghavenContext } from "../../../context/WinghavenContext";
 import { useNavigate } from "react-router-dom";
 
-
 export const Wz2 = () => {
   const { logged } = useContext(WinghavenContext);
   const [wType, setWType] = useState("");
@@ -16,78 +15,111 @@ export const Wz2 = () => {
   const [FiltWeapons, setFiltWeapons] = useState([]);
   const [search, setSearch] = useState("");
   const [aux, setAux] = useState(true);
-  const [qty, setQty] = useState(10);
-  
+  const [qty, setQty] = useState(0);
+  const [listen, setListen] = useState(false);
+
   const searcher = useRef();
+  const lupa = useRef();
   const navigate = useNavigate();
+
   useEffect(() => {
     const dbRef = ref(getDatabase());
-    get(child(dbRef, `wz2/`))
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          setWeapons(Object.values(snapshot.val()).sort((a, b) => b.id - a.id));
-          setFiltWeapons(
-            Object.values(snapshot.val()).sort((a, b) => b.id - a.id)
-          );
-        } else {
-          console.log("No data available");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const scroll = new Promise((resolve, reject) => {
+      window.scroll({ top: 0 });
+      console.log("hago scroll hacia arriba");
+      resolve(true);
+    });
 
-    window.addEventListener("scroll", updatePosition);
-    return () => window.removeEventListener("scroll", updatePosition);
+    scroll.then(() => {
+      get(child(dbRef, `wz2/`))
+        .then((snapshot) => {
+          if (snapshot.exists()) {
+            setWeapons(
+              Object.values(snapshot.val()).sort((a, b) => b.id - a.id)
+            );
+            setFiltWeapons(
+              Object.values(snapshot.val()).sort((a, b) => b.id - a.id)
+            );
+          } else {
+            console.log("No data available");
+          }
+        })
+        .then(() => {
+          setQty(10);
+          setListen(true);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+
+    return () => {
+      window.removeEventListener("scroll", listenScroll);
+    };
   }, [aux]);
 
-  const updatePosition = () => {
-    if (
-      window.scrollY + document.documentElement.clientHeight ===
-      document.documentElement.scrollHeight
-    ) {
-      setQty(qty + 10);
-      let boton = document.getElementById("boton");
-      boton.click();
+  function listenScroll() {
+    if (listen === true){
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 150
+      ) {
+        setQty(qty + 10);
+      }
     }
-  };
+ 
+  }
+
+  window.addEventListener("scroll", listenScroll);
+
   console.log(qty);
 
   const handleWType = (e) => {
     if (wType === e) {
       setWType("");
       setFiltWeapons(weapons);
-      setQty(10)
+      setQty(10);
       setSearch("");
       searcher.current.value = "";
     } else {
       setWType(e);
       if (e === "Meta") {
         setFiltWeapons(weapons.filter((elem) => elem.meta === true));
-        setQty(10)
+        setQty(10);
         setSearch("");
         searcher.current.value = "";
       } else {
         setFiltWeapons(weapons.filter((elem) => elem.type === e));
-        setQty(10)
+        setQty(10);
         setSearch("");
         searcher.current.value = "";
       }
     }
   };
 
+  const handleKey = (e) =>{
+    if (e.key === "Enter"){
+      document.getElementById("auxSearch").inputMode = "none";
+      document.getElementById("auxSearch").focus();
+      setFiltWeapons(
+        weapons.filter((elem) =>
+          elem.nombre.toLowerCase().includes(e.target.value.toLowerCase())
+        )
+      );
+      setWType("");
+      setQty(10);
+    }
+  }
+
   const handleSearch = (e) => {
     setSearch(e.target.value);
-
-    setFiltWeapons(
-      weapons.filter((elem) =>
-        elem.nombre.toLowerCase().includes(e.target.value.toLowerCase())
-      )
-    );
-    setWType("");
   };
 
-  console.log(wType);
+  const handleFocus = (e) => {
+    document.getElementById("searching").inputMode = "text";
+  };
+
+  console.log(search);
   return (
     <>
       <div className="principalWz2">
@@ -96,14 +128,18 @@ export const Wz2 = () => {
         <div className="dflex jcBetween">
           <h6>Selecciona tipo de arma</h6>
           <div className="dflex">
-            <img src="./images/search.png" alt="" />
+            <img ref={lupa} src="./images/search.png" alt="" />
             <input
               type="text"
+              id="searching"
               ref={searcher}
+              onFocus={handleFocus}
               onChange={handleSearch}
+              onKeyDown={handleKey}
               placeholder="Buscar arma"
               value={search}
             />
+            <input value="text" id="auxSearch" />
           </div>
         </div>
 
@@ -172,7 +208,7 @@ export const Wz2 = () => {
         <p className="mostrando">Mostrando {FiltWeapons.length} resultados.</p>
         {logged && (
           <div className="addWp" onClick={() => setShow(!show)}>
-            <h1>+</h1>
+            <img src="./images/plus.png" alt="" />
           </div>
         )}
         <div className="cardsContainer">
@@ -207,10 +243,7 @@ export const Wz2 = () => {
             })}
         </div>
       </div>
-      <button id="boton" onClick={updatePosition}>
-        MAS
-      </button>
-      
+
       {show && (
         <UploadWeapon setShow={setShow} show={show} aux={aux} setAux={setAux} />
       )}

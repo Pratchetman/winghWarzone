@@ -97,16 +97,26 @@
   // background-color: rgb(80, 80, 80);
   color: white;
   margin: auto;
+  margin-top: 30px;
   height: 60px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
   border-radius: 50%;
   border: 1px solid rgb(99, 99, 99);
+  >img{
+    width: 35%;
+    height: 35%;
+    font-weight: 800;
+    filter: invert(0.5);
+  }
 }
 .addWp:hover{
   background-color: rgb(99, 99, 99);
   cursor: pointer;
+  >img{
+    filter:invert(0.7);
+  }
 }
 @media (max-width: 1200px) {
   .principalSetup {

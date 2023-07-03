@@ -33,7 +33,7 @@ export const About = () => {
           src="https://www.youtube.com/embed/48EaIWPRzgc"
           title="Crossfire Prizefight Challenge 2"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
       </div>
@@ -50,7 +50,7 @@ export const About = () => {
           src="https://www.youtube.com/embed/LYhnBADpwhU"
           title="EPS5 Finals COD4 WRACG vs m5"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
       </article>
@@ -60,7 +60,7 @@ export const About = () => {
           src="https://www.youtube.com/embed/XSvZ_5SkE9c"
           title="Overwatch - Rogue vs. Reunited - Overwatch Atlantic Showdown - Gamescom Finals - Grand Final"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
         <div>
@@ -94,7 +94,7 @@ export const About = () => {
           src="https://www.youtube.com/embed/4gUl3N0Bbsw"
           title="¡LA PARTIDA QUE NOS ENVIÓ A CALIFORNIA AL TORNEO DE $300.000! PLAYERUNKNOWN&#39;S BATTLEGROUNDS ESPAÑOL"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
       </article>
@@ -104,7 +104,7 @@ export const About = () => {
           src="https://www.youtube.com/embed/103e3lMFbag"
           title="😱 GANAMOS UN TORNEO DE $50.000 EN APEX LEGENDS Y NOS VAMOS A BERLIN A LA TWITCHCON! 😱"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="fullscreen; accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
         ></iframe>
         <div>

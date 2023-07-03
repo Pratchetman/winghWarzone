@@ -32,6 +32,10 @@ export const Rrss = () => {
       <div className="principalRrss">
         <h2>Redes sociales</h2>
         <hr />
+        {logged && <><div className="addWp" onClick={() => setShow(!show)}>
+          <img src="./images/plus.png" alt="" />
+        </div>
+      <UploadRrss show={show} setShow={setShow} rrss={rrss} setRrss={setRrss} /></> }
         <section>
           {rrss.map((elem, index) => {
             return (
@@ -46,10 +50,7 @@ export const Rrss = () => {
           })}
         </section>
       </div>
-      {logged && <><Button className="buttonAdd" onClick={() => setShow(!show)}>
-        Añadir RRSS
-      </Button>
-      <UploadRrss show={show} setShow={setShow} rrss={rrss} setRrss={setRrss} /></> }
+      
     </>
   );
 };
