@@ -1,0 +1,15 @@
+.error{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 56px - 61px);
+    color: rgb(150, 150, 150);
+    padding: 0px 20px 0px 20px;
+    h1{
+        font-size: 48px;
+    }
+    img{
+        filter: drop-shadow(0 0 0.2rem rgb(117, 117, 117));
+    }
+}
