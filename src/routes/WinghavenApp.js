@@ -15,17 +15,24 @@ import { Wz2 } from '../components/weapons/wz2/Wz2.js';
 import { Footer } from '../components/footer/Footer';
 import { OneWz2 } from '../components/weapons/wz2/OneWz2';
 import { OneWz1 } from '../components/weapons/wz1/OneWz1';
-import { Error } from '../components/Error';
+import  {Error}  from '../components/Error';
+
+import { CompleteCountdown } from '../components/countdown/CompleteCountdown';
 
 
 export const WinghavenApp = () => {
+
+  const DATE_TARGET = new Date('11/11/2023 0:01 AM');
+  const now = new Date();
   return (
     <div>
        
         <BrowserRouter>
-        <NavB />
+        {DATE_TARGET < now ? <NavB /> : null }
         <Routes>
-        <Route path="/" element={<Main />} />
+          {DATE_TARGET < now ? <>
+         
+            <Route path="/" element={<Main />} />
         <Route path="/setup" element={<Setup />} />
         <Route path="/about" element={<About />} />
         <Route path="/memes" element={<Memes />} />
@@ -35,6 +42,14 @@ export const WinghavenApp = () => {
         <Route path="/wz2/:wz2_id" element={<OneWz2 />} />
         <Route path="/wz1/:wz1_id" element={<OneWz1 />} />
         <Route path="/*" element={<Error />} />
+        </>
+          :  
+          <>
+          <Route path="/" element={<CompleteCountdown DATE_TARGET={DATE_TARGET} />} /> 
+          <Route path="/*" element={<CompleteCountdown DATE_TARGET={DATE_TARGET} />} /> 
+          </>
+          }
+        
        
         </Routes>
         <Footer />

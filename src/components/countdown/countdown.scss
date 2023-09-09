@@ -1,0 +1,46 @@
+.countdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 131px);
+  color: rgb(150, 150, 150);
+  background-image: url();
+  position: relative;
+  img {
+    width: 100px;
+    
+    filter: drop-shadow(0 0 0.2rem rgb(117, 117, 117));
+    animation: float 3s ease-out infinite;
+  }
+  h1 {
+    font-size: 48px;
+    
+  }
+  .logoCounter{
+    border-top: 2px solid rgba(255, 255, 255, 0.151);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.151);
+    width: 100%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.212);
+    box-shadow: 2px 2px 5px black;
+  }
+ 
+}
+@keyframes float {
+    50% {
+       transform: translate(0, 5px);
+    }
+  }
+
+@media (max-width: 700px) {
+  h1{
+    font-size: 1.2rem !important;
+    
+    text-shadow: 1px 1px black;
+  }
+  .logoCounter{
+    padding: 5px !important;
+  }
+}
