@@ -16,10 +16,10 @@ export const Main = () => {
       <hr />
       <div className="flexJuegos">
       <div onClick={()=>{navigate("/wz2")}} className="marcoJuego">
-          <img src="https://mywarzonelegacy.callofduty.com/content/dam/atvi/callofduty/cod-touchui/blog/body/mwii/MWII-SEASON-01-ROADMAP-002.jpg" alt="" />
+          <img src="https://cdn1.epicgames.com/spt-assets/5e13bf477ca8474e9bd01ae88d6710e7/delta-force-17piz.jpg" alt="" />
         </div>
         <div onClick={()=>{navigate("/wz1")}} className="marcoJuego">
-          <img src="https://files.lafm.com.co/assets/public/2020-03/cod-war-zone_0.jpg" alt="" />
+          <img src="https://www.callofduty.com/content/dam/atvi/callofduty/cod-touchui/store/games/wz/overview/bo6-season-1/COD-Store_PDP-WZ_Hero_01.webp" alt="" />
         </div>
        
       </div>

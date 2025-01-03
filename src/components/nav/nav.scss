@@ -21,13 +21,14 @@
       height: 40px;
       margin: 0px;
     }
-  }
-  
-
-
-
-  
+  }  
 }
+
+.navbar{
+  backdrop-filter: blur(4px); /* Aplica el desenfoque */
+  background-color: rgba(0, 0, 0, 0.404) !important;
+}
+
 @media (max-width: 991px) {
   nav{
     width: 100vw;
@@ -37,6 +38,15 @@
   }
   .session{
     display: none !important;
+  }
+  .navbar{
+    background-color: rgba(0, 0, 0, 0.501) !important;
+    text-align: end;
+    .nav-link{
+    color: white;
+      font-size: 18px;
+      font-weight: bolder;
+    }
   }
 }
 
